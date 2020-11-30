@@ -55,10 +55,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/129/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/135/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/129/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/135/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -94,12 +94,12 @@ clean: CMakeFiles/Project_2.dir/clean
 CMakeFiles/Project_2.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target Project_2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target Project_2"
 .PHONY : CMakeFiles/Project_2.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Project_2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Project_2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Project_2.dir/rule

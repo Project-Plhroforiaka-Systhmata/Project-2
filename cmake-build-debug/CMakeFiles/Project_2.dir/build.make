@@ -54,10 +54,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/129/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/135/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/129/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/135/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -90,17 +90,77 @@ CMakeFiles/Project_2.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_2.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/treloubas76/CLionProjects/Project-2/main.cpp -o CMakeFiles/Project_2.dir/main.cpp.s
 
+CMakeFiles/Project_2.dir/vertex.cpp.o: CMakeFiles/Project_2.dir/flags.make
+CMakeFiles/Project_2.dir/vertex.cpp.o: ../vertex.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Project_2.dir/vertex.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Project_2.dir/vertex.cpp.o -c /home/treloubas76/CLionProjects/Project-2/vertex.cpp
+
+CMakeFiles/Project_2.dir/vertex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_2.dir/vertex.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/treloubas76/CLionProjects/Project-2/vertex.cpp > CMakeFiles/Project_2.dir/vertex.cpp.i
+
+CMakeFiles/Project_2.dir/vertex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_2.dir/vertex.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/treloubas76/CLionProjects/Project-2/vertex.cpp -o CMakeFiles/Project_2.dir/vertex.cpp.s
+
+CMakeFiles/Project_2.dir/list.cpp.o: CMakeFiles/Project_2.dir/flags.make
+CMakeFiles/Project_2.dir/list.cpp.o: ../list.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Project_2.dir/list.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Project_2.dir/list.cpp.o -c /home/treloubas76/CLionProjects/Project-2/list.cpp
+
+CMakeFiles/Project_2.dir/list.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_2.dir/list.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/treloubas76/CLionProjects/Project-2/list.cpp > CMakeFiles/Project_2.dir/list.cpp.i
+
+CMakeFiles/Project_2.dir/list.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_2.dir/list.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/treloubas76/CLionProjects/Project-2/list.cpp -o CMakeFiles/Project_2.dir/list.cpp.s
+
+CMakeFiles/Project_2.dir/bucket.cpp.o: CMakeFiles/Project_2.dir/flags.make
+CMakeFiles/Project_2.dir/bucket.cpp.o: ../bucket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Project_2.dir/bucket.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Project_2.dir/bucket.cpp.o -c /home/treloubas76/CLionProjects/Project-2/bucket.cpp
+
+CMakeFiles/Project_2.dir/bucket.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_2.dir/bucket.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/treloubas76/CLionProjects/Project-2/bucket.cpp > CMakeFiles/Project_2.dir/bucket.cpp.i
+
+CMakeFiles/Project_2.dir/bucket.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_2.dir/bucket.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/treloubas76/CLionProjects/Project-2/bucket.cpp -o CMakeFiles/Project_2.dir/bucket.cpp.s
+
+CMakeFiles/Project_2.dir/hashTable.cpp.o: CMakeFiles/Project_2.dir/flags.make
+CMakeFiles/Project_2.dir/hashTable.cpp.o: ../hashTable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Project_2.dir/hashTable.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Project_2.dir/hashTable.cpp.o -c /home/treloubas76/CLionProjects/Project-2/hashTable.cpp
+
+CMakeFiles/Project_2.dir/hashTable.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_2.dir/hashTable.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/treloubas76/CLionProjects/Project-2/hashTable.cpp > CMakeFiles/Project_2.dir/hashTable.cpp.i
+
+CMakeFiles/Project_2.dir/hashTable.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_2.dir/hashTable.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/treloubas76/CLionProjects/Project-2/hashTable.cpp -o CMakeFiles/Project_2.dir/hashTable.cpp.s
+
 # Object files for target Project_2
 Project_2_OBJECTS = \
-"CMakeFiles/Project_2.dir/main.cpp.o"
+"CMakeFiles/Project_2.dir/main.cpp.o" \
+"CMakeFiles/Project_2.dir/vertex.cpp.o" \
+"CMakeFiles/Project_2.dir/list.cpp.o" \
+"CMakeFiles/Project_2.dir/bucket.cpp.o" \
+"CMakeFiles/Project_2.dir/hashTable.cpp.o"
 
 # External object files for target Project_2
 Project_2_EXTERNAL_OBJECTS =
 
 Project_2: CMakeFiles/Project_2.dir/main.cpp.o
+Project_2: CMakeFiles/Project_2.dir/vertex.cpp.o
+Project_2: CMakeFiles/Project_2.dir/list.cpp.o
+Project_2: CMakeFiles/Project_2.dir/bucket.cpp.o
+Project_2: CMakeFiles/Project_2.dir/hashTable.cpp.o
 Project_2: CMakeFiles/Project_2.dir/build.make
 Project_2: CMakeFiles/Project_2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Project_2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Project_2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Project_2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

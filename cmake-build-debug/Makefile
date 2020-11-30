@@ -59,10 +59,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/129/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/135/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/129/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/135/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -79,7 +79,7 @@ CMAKE_BINARY_DIR = /home/treloubas76/CLionProjects/Project-2/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/129/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/135/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -90,7 +90,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/129/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/135/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -143,6 +143,87 @@ Project_2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/build
 .PHONY : Project_2/fast
 
+bucket.o: bucket.cpp.o
+
+.PHONY : bucket.o
+
+# target to build an object file
+bucket.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/bucket.cpp.o
+.PHONY : bucket.cpp.o
+
+bucket.i: bucket.cpp.i
+
+.PHONY : bucket.i
+
+# target to preprocess a source file
+bucket.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/bucket.cpp.i
+.PHONY : bucket.cpp.i
+
+bucket.s: bucket.cpp.s
+
+.PHONY : bucket.s
+
+# target to generate assembly for a file
+bucket.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/bucket.cpp.s
+.PHONY : bucket.cpp.s
+
+hashTable.o: hashTable.cpp.o
+
+.PHONY : hashTable.o
+
+# target to build an object file
+hashTable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/hashTable.cpp.o
+.PHONY : hashTable.cpp.o
+
+hashTable.i: hashTable.cpp.i
+
+.PHONY : hashTable.i
+
+# target to preprocess a source file
+hashTable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/hashTable.cpp.i
+.PHONY : hashTable.cpp.i
+
+hashTable.s: hashTable.cpp.s
+
+.PHONY : hashTable.s
+
+# target to generate assembly for a file
+hashTable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/hashTable.cpp.s
+.PHONY : hashTable.cpp.s
+
+list.o: list.cpp.o
+
+.PHONY : list.o
+
+# target to build an object file
+list.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/list.cpp.o
+.PHONY : list.cpp.o
+
+list.i: list.cpp.i
+
+.PHONY : list.i
+
+# target to preprocess a source file
+list.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/list.cpp.i
+.PHONY : list.cpp.i
+
+list.s: list.cpp.s
+
+.PHONY : list.s
+
+# target to generate assembly for a file
+list.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/list.cpp.s
+.PHONY : list.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -170,6 +251,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+vertex.o: vertex.cpp.o
+
+.PHONY : vertex.o
+
+# target to build an object file
+vertex.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/vertex.cpp.o
+.PHONY : vertex.cpp.o
+
+vertex.i: vertex.cpp.i
+
+.PHONY : vertex.i
+
+# target to preprocess a source file
+vertex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/vertex.cpp.i
+.PHONY : vertex.cpp.i
+
+vertex.s: vertex.cpp.s
+
+.PHONY : vertex.s
+
+# target to generate assembly for a file
+vertex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/vertex.cpp.s
+.PHONY : vertex.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -179,9 +287,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Project_2"
+	@echo "... bucket.o"
+	@echo "... bucket.i"
+	@echo "... bucket.s"
+	@echo "... hashTable.o"
+	@echo "... hashTable.i"
+	@echo "... hashTable.s"
+	@echo "... list.o"
+	@echo "... list.i"
+	@echo "... list.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... vertex.o"
+	@echo "... vertex.i"
+	@echo "... vertex.s"
 .PHONY : help
 
 

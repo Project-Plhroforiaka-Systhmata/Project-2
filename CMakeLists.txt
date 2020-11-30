@@ -3,4 +3,4 @@ project(Project_2)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Project_2 main.cpp)
+add_executable(Project_2 main.cpp vertex.cpp vertex.h list.cpp list.h bucket.cpp bucket.h hashTable.cpp hashTable.h)

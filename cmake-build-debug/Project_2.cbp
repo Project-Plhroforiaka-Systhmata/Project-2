@@ -82,7 +82,31 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/treloubas76/CLionProjects/Project-2/bucket.cpp">
+			<Option target="Project_2"/>
+		</Unit>
+		<Unit filename="/home/treloubas76/CLionProjects/Project-2/bucket.h">
+			<Option target="Project_2"/>
+		</Unit>
+		<Unit filename="/home/treloubas76/CLionProjects/Project-2/hashTable.cpp">
+			<Option target="Project_2"/>
+		</Unit>
+		<Unit filename="/home/treloubas76/CLionProjects/Project-2/hashTable.h">
+			<Option target="Project_2"/>
+		</Unit>
+		<Unit filename="/home/treloubas76/CLionProjects/Project-2/list.cpp">
+			<Option target="Project_2"/>
+		</Unit>
+		<Unit filename="/home/treloubas76/CLionProjects/Project-2/list.h">
+			<Option target="Project_2"/>
+		</Unit>
 		<Unit filename="/home/treloubas76/CLionProjects/Project-2/main.cpp">
+			<Option target="Project_2"/>
+		</Unit>
+		<Unit filename="/home/treloubas76/CLionProjects/Project-2/vertex.cpp">
+			<Option target="Project_2"/>
+		</Unit>
+		<Unit filename="/home/treloubas76/CLionProjects/Project-2/vertex.h">
 			<Option target="Project_2"/>
 		</Unit>
 		<Unit filename="/home/treloubas76/CLionProjects/Project-2/CMakeLists.txt">
