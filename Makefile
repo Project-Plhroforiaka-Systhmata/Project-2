@@ -1,7 +1,7 @@
 OBJS	= bucket.o hashTable.o list.o main.o vertex.o
 SOURCE	= bucket.cpp hashTable.cpp list.cpp main.cpp vertex.cpp
 HEADER	= bucket.h hashTable.h list.h vertex.h
-OUT	= project1
+OUT	= project2
 CC	 = g++
 FLAGS	 = -g -c -Wall
 LFLAGS	 = 
