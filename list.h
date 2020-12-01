@@ -2,6 +2,7 @@
 #define PROJECT_1_LIST_H
 
 #include <string>
+#include "negativeList.h"
 
 using namespace std;
 
@@ -15,9 +16,11 @@ struct node {
 class list {
 public:
     node *head, *tail;
+    negativeList *negList;
     list();
     int insert(vertex*);
     vertex* pop();
+    int copyNegList(negativeList*);
     ~list();
 };
 

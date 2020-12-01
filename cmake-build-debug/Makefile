@@ -68,10 +68,10 @@ RM = /snap/clion/135/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/treloubas76/CLionProjects/Project-2
+CMAKE_SOURCE_DIR = /home/dennis/CLionProjects/Project-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/treloubas76/CLionProjects/Project-2/cmake-build-debug
+CMAKE_BINARY_DIR = /home/dennis/CLionProjects/Project-2/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles /home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dennis/CLionProjects/Project-2/cmake-build-debug/CMakeFiles /home/dennis/CLionProjects/Project-2/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/treloubas76/CLionProjects/Project-2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dennis/CLionProjects/Project-2/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -251,6 +251,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+negativeList.o: negativeList.cpp.o
+
+.PHONY : negativeList.o
+
+# target to build an object file
+negativeList.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/negativeList.cpp.o
+.PHONY : negativeList.cpp.o
+
+negativeList.i: negativeList.cpp.i
+
+.PHONY : negativeList.i
+
+# target to preprocess a source file
+negativeList.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/negativeList.cpp.i
+.PHONY : negativeList.cpp.i
+
+negativeList.s: negativeList.cpp.s
+
+.PHONY : negativeList.s
+
+# target to generate assembly for a file
+negativeList.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/negativeList.cpp.s
+.PHONY : negativeList.cpp.s
+
 vertex.o: vertex.cpp.o
 
 .PHONY : vertex.o
@@ -299,6 +326,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... negativeList.o"
+	@echo "... negativeList.i"
+	@echo "... negativeList.s"
 	@echo "... vertex.o"
 	@echo "... vertex.i"
 	@echo "... vertex.s"

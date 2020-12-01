@@ -7,6 +7,8 @@ using namespace std;
 list::list() {
     head = NULL;
     tail = NULL;
+    negList = new negativeList;
+    negList->insert(this);
 }
 
 int list::insert(vertex *name) {
@@ -44,6 +46,24 @@ vertex* list::pop() {
     return returnVert;
 }
 
+int list::copyNegList(negativeList *cpList) {
+    if(negList->head == NULL){
+        return 1;
+    }
+
+    //keep specList address
+    negativeList *tempList = negList;
+    list *temp;
+    temp = tempList->pop();
+    while(temp != NULL){
+        cpList->insert(temp);       //insert popped vertex to cpList
+        temp->negList = cpList;    //change popped vertex's specList pointer to cpList
+        temp = tempList->pop();     //pop next vertex
+    }
+    delete tempList;    //delete the empty tempList
+    return 0;
+}
+
 list::~list() {
     node *temp;
     temp = head;
@@ -51,5 +71,17 @@ list::~list() {
         head = temp->next;
         delete temp;
         temp = head;
+    }
+    if (negList != NULL){
+        lnode *temp;
+        temp = negList->head;
+        while(temp != NULL){
+            //change all other vertexes specLists in this list to point to NULL
+            if(temp->spec != this) {
+                temp->spec->negList = NULL;
+            }
+            temp = temp->next;
+        }
+        delete negList;    //delete the list
     }
 }

@@ -6,53 +6,89 @@
 
 #IncludeRegexTransform: 
 
-/home/treloubas76/CLionProjects/Project-2/bucket.cpp
+/home/dennis/CLionProjects/Project-2/bucket.cpp
 bucket.h
-/home/treloubas76/CLionProjects/Project-2/bucket.h
+/home/dennis/CLionProjects/Project-2/bucket.h
 iostream
 -
 
-/home/treloubas76/CLionProjects/Project-2/bucket.h
+/home/dennis/CLionProjects/Project-2/bucket.h
 string
 -
 vertex.h
-/home/treloubas76/CLionProjects/Project-2/vertex.h
+/home/dennis/CLionProjects/Project-2/vertex.h
 
-/home/treloubas76/CLionProjects/Project-2/hashTable.cpp
+/home/dennis/CLionProjects/Project-2/hashTable.cpp
 sstream
 -
 iostream
 -
 hashTable.h
-/home/treloubas76/CLionProjects/Project-2/hashTable.h
+/home/dennis/CLionProjects/Project-2/hashTable.h
 
-/home/treloubas76/CLionProjects/Project-2/hashTable.h
+/home/dennis/CLionProjects/Project-2/hashTable.h
 string
 -
 bucket.h
-/home/treloubas76/CLionProjects/Project-2/bucket.h
+/home/dennis/CLionProjects/Project-2/bucket.h
 
-/home/treloubas76/CLionProjects/Project-2/list.cpp
+/home/dennis/CLionProjects/Project-2/list.cpp
 list.h
-/home/treloubas76/CLionProjects/Project-2/list.h
+/home/dennis/CLionProjects/Project-2/list.h
 vertex.h
-/home/treloubas76/CLionProjects/Project-2/vertex.h
+/home/dennis/CLionProjects/Project-2/vertex.h
 iostream
 -
 
-/home/treloubas76/CLionProjects/Project-2/list.h
+/home/dennis/CLionProjects/Project-2/list.h
+string
+-
+negativeList.h
+/home/dennis/CLionProjects/Project-2/negativeList.h
+
+/home/dennis/CLionProjects/Project-2/main.cpp
+stdlib.h
+-
+cstdlib
+-
+iostream
+-
+stdio.h
+-
+dirent.h
+-
+filesystem
+-
+cstring
+-
+fstream
+-
+sstream
+-
+regex
+-
+string
+-
+hashTable.h
+/home/dennis/CLionProjects/Project-2/hashTable.h
+
+/home/dennis/CLionProjects/Project-2/negativeList.cpp
+negativeList.h
+/home/dennis/CLionProjects/Project-2/negativeList.h
+
+/home/dennis/CLionProjects/Project-2/negativeList.h
 string
 -
 
-/home/treloubas76/CLionProjects/Project-2/vertex.cpp
+/home/dennis/CLionProjects/Project-2/vertex.cpp
 iostream
 -
 vertex.h
-/home/treloubas76/CLionProjects/Project-2/vertex.h
+/home/dennis/CLionProjects/Project-2/vertex.h
 
-/home/treloubas76/CLionProjects/Project-2/vertex.h
+/home/dennis/CLionProjects/Project-2/vertex.h
 string
 -
 list.h
-/home/treloubas76/CLionProjects/Project-2/list.h
+/home/dennis/CLionProjects/Project-2/list.h
 

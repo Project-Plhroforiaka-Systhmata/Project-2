@@ -18,13 +18,12 @@ int main(int argc, char **argv){
 
 
     auto *hash = new hashTable(1000);
-    char ch;
     FILE *fp;
     DIR *dirp2,*dirp3;
     struct dirent * entry2;
     struct dirent * entry3;
     string specs;
-    char path[200],path2[200], path3[200], realPath[200];
+    char path[200],path2[200], path3[200], realPath[200], fline[100];
     if (argv[1] == nullptr){
         cout << "Please insert json files path!" << endl;
         exit(-1);
@@ -55,9 +54,9 @@ int main(int argc, char **argv){
             strcat(realPath,entry3->d_name);
 
             fp = fopen(path2, "r");
-            while ((ch = fgetc(fp)) != EOF)
+            while (fgets(fline, sizeof(fline), fp))
             {
-                specs+=ch;
+                specs+=fline;
             }
             fclose(fp);
             hash->insert(realPath,new vertex(realPath,specs));
@@ -91,23 +90,33 @@ int main(int argc, char **argv){
             }
         }
 
+        //fix specId formats to match format in hashTable
+        leftSpecId.append(".json");
+        rightSpecId.append(".json");
+        leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
+        rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
 
-        if(label == "1"){
+        vertex *vert1, *vert2;
+        vert1 = hash->search(leftSpecId);
+        vert2 = hash->search(rightSpecId);
 
-            //fix specId formats to match format in hashTable
-            leftSpecId.append(".json");
-            rightSpecId.append(".json");
-            leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
-            rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
+        if(vert1 != nullptr && vert2 != nullptr) {
+            if (label == "1") {
 
-            vertex *vert1, *vert2;
-            vert1 = hash->search(leftSpecId);
-            vert2 = hash->search(rightSpecId);
+                //if leftSpecId and rightSpecId exist and are not already in the same list
+                if (vert1->specList != vert2->specList) {
+                    //copy leftSpecId's list to rightSpecId's list
+                    vert1->copyList(vert2->specList);
+                }
 
-            //if leftSpecId and rightSpecId exist and are not already in the same list
-            if(vert1 != nullptr && vert2 != nullptr && vert1->specList != vert2->specList) {
-                //copy leftSpecId's list to rightSpecId's list
-                vert1->copyList(vert2->specList);
+            } else {
+
+                list *list1, *list2;
+                list1 = vert1->specList;
+                list2 = vert2->specList;
+                if (list1->negList != list2->negList) {
+                    list1->copyNegList(list2->negList);
+                }
             }
         }
     }
