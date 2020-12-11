@@ -76,17 +76,6 @@ CMAKE_BINARY_DIR = /home/dennis/CLionProjects/Project-2/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/137/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -97,6 +86,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/snap/clion/137/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -131,17 +131,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Project_2
+# Target rules for targets named Project-2
 
 # Build rule for target.
-Project_2: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Project_2
-.PHONY : Project_2
+Project-2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Project-2
+.PHONY : Project-2
 
 # fast build rule for target.
-Project_2/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/build
-.PHONY : Project_2/fast
+Project-2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/build
+.PHONY : Project-2/fast
 
 bucket.o: bucket.cpp.o
 
@@ -149,7 +149,7 @@ bucket.o: bucket.cpp.o
 
 # target to build an object file
 bucket.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/bucket.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/bucket.cpp.o
 .PHONY : bucket.cpp.o
 
 bucket.i: bucket.cpp.i
@@ -158,7 +158,7 @@ bucket.i: bucket.cpp.i
 
 # target to preprocess a source file
 bucket.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/bucket.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/bucket.cpp.i
 .PHONY : bucket.cpp.i
 
 bucket.s: bucket.cpp.s
@@ -167,7 +167,7 @@ bucket.s: bucket.cpp.s
 
 # target to generate assembly for a file
 bucket.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/bucket.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/bucket.cpp.s
 .PHONY : bucket.cpp.s
 
 hashTable.o: hashTable.cpp.o
@@ -176,7 +176,7 @@ hashTable.o: hashTable.cpp.o
 
 # target to build an object file
 hashTable.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/hashTable.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/hashTable.cpp.o
 .PHONY : hashTable.cpp.o
 
 hashTable.i: hashTable.cpp.i
@@ -185,7 +185,7 @@ hashTable.i: hashTable.cpp.i
 
 # target to preprocess a source file
 hashTable.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/hashTable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/hashTable.cpp.i
 .PHONY : hashTable.cpp.i
 
 hashTable.s: hashTable.cpp.s
@@ -194,7 +194,7 @@ hashTable.s: hashTable.cpp.s
 
 # target to generate assembly for a file
 hashTable.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/hashTable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/hashTable.cpp.s
 .PHONY : hashTable.cpp.s
 
 list.o: list.cpp.o
@@ -203,7 +203,7 @@ list.o: list.cpp.o
 
 # target to build an object file
 list.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/list.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/list.cpp.o
 .PHONY : list.cpp.o
 
 list.i: list.cpp.i
@@ -212,7 +212,7 @@ list.i: list.cpp.i
 
 # target to preprocess a source file
 list.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/list.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/list.cpp.i
 .PHONY : list.cpp.i
 
 list.s: list.cpp.s
@@ -221,7 +221,7 @@ list.s: list.cpp.s
 
 # target to generate assembly for a file
 list.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/list.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/list.cpp.s
 .PHONY : list.cpp.s
 
 main.o: main.cpp.o
@@ -230,7 +230,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -239,7 +239,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -248,7 +248,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 negativeList.o: negativeList.cpp.o
@@ -257,7 +257,7 @@ negativeList.o: negativeList.cpp.o
 
 # target to build an object file
 negativeList.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/negativeList.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/negativeList.cpp.o
 .PHONY : negativeList.cpp.o
 
 negativeList.i: negativeList.cpp.i
@@ -266,7 +266,7 @@ negativeList.i: negativeList.cpp.i
 
 # target to preprocess a source file
 negativeList.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/negativeList.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/negativeList.cpp.i
 .PHONY : negativeList.cpp.i
 
 negativeList.s: negativeList.cpp.s
@@ -275,7 +275,7 @@ negativeList.s: negativeList.cpp.s
 
 # target to generate assembly for a file
 negativeList.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/negativeList.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/negativeList.cpp.s
 .PHONY : negativeList.cpp.s
 
 vertex.o: vertex.cpp.o
@@ -284,7 +284,7 @@ vertex.o: vertex.cpp.o
 
 # target to build an object file
 vertex.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/vertex.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/vertex.cpp.o
 .PHONY : vertex.cpp.o
 
 vertex.i: vertex.cpp.i
@@ -293,7 +293,7 @@ vertex.i: vertex.cpp.i
 
 # target to preprocess a source file
 vertex.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/vertex.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/vertex.cpp.i
 .PHONY : vertex.cpp.i
 
 vertex.s: vertex.cpp.s
@@ -302,7 +302,7 @@ vertex.s: vertex.cpp.s
 
 # target to generate assembly for a file
 vertex.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/vertex.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/vertex.cpp.s
 .PHONY : vertex.cpp.s
 
 # Help Target
@@ -313,7 +313,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Project_2"
+	@echo "... Project-2"
 	@echo "... bucket.o"
 	@echo "... bucket.i"
 	@echo "... bucket.s"

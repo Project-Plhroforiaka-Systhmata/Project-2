@@ -73,7 +73,7 @@ CMAKE_BINARY_DIR = /home/dennis/CLionProjects/Project-2/cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/Project_2.dir/all
+all: CMakeFiles/Project-2.dir/all
 
 .PHONY : all
 
@@ -83,36 +83,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/Project_2.dir/clean
+clean: CMakeFiles/Project-2.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Project_2.dir
+# Target rules for target CMakeFiles/Project-2.dir
 
 # All Build rule for target.
-CMakeFiles/Project_2.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dennis/CLionProjects/Project-2/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target Project_2"
-.PHONY : CMakeFiles/Project_2.dir/all
+CMakeFiles/Project-2.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dennis/CLionProjects/Project-2/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target Project-2"
+.PHONY : CMakeFiles/Project-2.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Project_2.dir/rule: cmake_check_build_system
+CMakeFiles/Project-2.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dennis/CLionProjects/Project-2/cmake-build-debug/CMakeFiles 7
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Project_2.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Project-2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dennis/CLionProjects/Project-2/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/Project_2.dir/rule
+.PHONY : CMakeFiles/Project-2.dir/rule
 
 # Convenience name for target.
-Project_2: CMakeFiles/Project_2.dir/rule
+Project-2: CMakeFiles/Project-2.dir/rule
 
-.PHONY : Project_2
+.PHONY : Project-2
 
 # clean rule for target.
-CMakeFiles/Project_2.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project_2.dir/build.make CMakeFiles/Project_2.dir/clean
-.PHONY : CMakeFiles/Project_2.dir/clean
+CMakeFiles/Project-2.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/clean
+.PHONY : CMakeFiles/Project-2.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

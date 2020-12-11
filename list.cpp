@@ -50,10 +50,11 @@ int list::copyNegList(negativeList *cpList) {
     if(negList->head == NULL){
         return 1;
     }
-
+    cout << "ok" << endl;
     //keep specList address
     negativeList *tempList = negList;
     list *temp;
+    cout << "before pop" << endl;
     temp = tempList->pop();
     while(temp != NULL){
         cpList->insert(temp);       //insert popped vertex to cpList

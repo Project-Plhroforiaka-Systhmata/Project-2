@@ -21,7 +21,7 @@ int negativeList::insert(list *name) {
     return 0;
 }
 
-list *negativeList::pop() {
+list* negativeList::pop() {
     if(head == NULL){
         return NULL;
     }

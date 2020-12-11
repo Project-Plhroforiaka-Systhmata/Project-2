@@ -109,13 +109,19 @@ int main(int argc, char **argv){
                 }
 
             } else {
-
+                cout << "in else" << endl;
                 list *list1, *list2;
                 list1 = vert1->specList;
                 list2 = vert2->specList;
                 if (list1->negList != list2->negList) {
+                    cout << "before copy" << endl;
+                    cout << list1->negList << endl;
+                    cout << list2->negList << endl;
+                    if(list1->negList == NULL || list2->negList == NULL) exit(1);
                     list1->copyNegList(list2->negList);
+                    cout << "after copy" << endl;
                 }
+                cout << "finished" << endl;
             }
         }
     }

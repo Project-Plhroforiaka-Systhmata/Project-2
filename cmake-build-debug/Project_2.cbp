@@ -17,16 +17,6 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/home/dennis/CLionProjects/Project-2/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="edit_cache">
 				<Option working_dir="/home/dennis/CLionProjects/Project-2/cmake-build-debug"/>
 				<Option type="4"/>
@@ -37,30 +27,18 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Project_2">
-				<Option output="/home/dennis/CLionProjects/Project-2/cmake-build-debug/Project_2" prefix_auto="0" extension_auto="0"/>
+			<Target title="rebuild_cache">
 				<Option working_dir="/home/dennis/CLionProjects/Project-2/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project_2"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Project_2/fast">
-				<Option output="/home/dennis/CLionProjects/Project-2/cmake-build-debug/Project_2" prefix_auto="0" extension_auto="0"/>
+			<Target title="Project-2">
+				<Option output="/home/dennis/CLionProjects/Project-2/cmake-build-debug/Project-2" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/dennis/CLionProjects/Project-2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -75,7 +53,29 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project_2/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project-2"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project-2/fast">
+				<Option output="/home/dennis/CLionProjects/Project-2/cmake-build-debug/Project-2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/dennis/CLionProjects/Project-2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project-2/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dennis/CLionProjects/Project-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -83,37 +83,37 @@
 			</Target>
 		</Build>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/bucket.cpp">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/bucket.h">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/hashTable.cpp">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/hashTable.h">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/list.cpp">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/list.h">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/main.cpp">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/negativeList.cpp">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/negativeList.h">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/vertex.cpp">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/vertex.h">
-			<Option target="Project_2"/>
+			<Option target="Project-2"/>
 		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
