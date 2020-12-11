@@ -31,7 +31,7 @@ int main(int argc, char **argv){
     strcpy(path,argv[1]);
     strcat(path,"/");
     dirp2 = opendir(argv[1]);
-    
+
 
     while ((entry2 = readdir(dirp2)) != NULL) {
         strcpy(path,argv[1]);
@@ -65,7 +65,6 @@ int main(int argc, char **argv){
 
     }
     closedir(dirp2);
-
 
     fstream fin;
     fin.open(argv[2], ios::in);
