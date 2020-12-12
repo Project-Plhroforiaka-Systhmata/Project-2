@@ -59,7 +59,12 @@ int main(int argc, char **argv){
                 specs+=fline;
             }
             fclose(fp);
-            hash->insert(realPath,new vertex(realPath,specs));
+
+            //keep json file id as key for the hash table
+            string key = entry3->d_name;
+            key = regex_replace(key, regex(".json"), "");
+
+            hash->insert(key, new vertex(key, realPath,specs));
         }
         closedir(dirp3);
 
@@ -89,6 +94,13 @@ int main(int argc, char **argv){
             }
         }
 
+        if(leftSpecId == "left_spec_id") continue;
+
+        string key1 = leftSpecId, key2 = rightSpecId;
+        key1 = regex_replace(key1, regex("[^0-9]"), "");
+        key2 = regex_replace(key2, regex("[^0-9]"), "");
+
+
         //fix specId formats to match format in hashTable
         leftSpecId.append(".json");
         rightSpecId.append(".json");
@@ -96,10 +108,12 @@ int main(int argc, char **argv){
         rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
 
         vertex *vert1, *vert2;
-        vert1 = hash->search(leftSpecId);
-        vert2 = hash->search(rightSpecId);
+        vert1 = hash->search(leftSpecId, key1);
+        vert2 = hash->search(rightSpecId, key2);
+
 
         if(vert1 != nullptr && vert2 != nullptr) {
+
             if (label == "1") {
 
                 //if leftSpecId and rightSpecId exist and are not already in the same list
@@ -108,20 +122,58 @@ int main(int argc, char **argv){
                     vert1->copyList(vert2->specList);
                 }
 
-            } else {
-                cout << "in else" << endl;
+            }
+        }
+    }
+
+    fin.open(argv[2], ios::in);
+    while (getline(fin, line)){
+        stringstream s(line);
+        count = 0;
+        while (getline(s, word, ',')) {
+            count++;
+
+            //split line by ',' and recognise leftSpecId, rightpecId and label
+            switch (count) {
+                case 1:
+                    leftSpecId = word;
+                    break;
+                case 2:
+                    rightSpecId = word;
+                    break;
+                default:
+                    label = word;
+            }
+        }
+
+        if(leftSpecId == "left_spec_id") continue;
+
+        string key1 = leftSpecId, key2 = rightSpecId;
+        key1 = regex_replace(key1, regex("[^0-9]"), "");
+        key2 = regex_replace(key2, regex("[^0-9]"), "");
+
+
+        //fix specId formats to match format in hashTable
+        leftSpecId.append(".json");
+        rightSpecId.append(".json");
+        leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
+        rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
+
+        vertex *vert1, *vert2;
+        vert1 = hash->search(leftSpecId, key1);
+        vert2 = hash->search(rightSpecId, key2);
+
+
+        if(vert1 != nullptr && vert2 != nullptr) {
+
+             if(label == "0") {
                 list *list1, *list2;
                 list1 = vert1->specList;
                 list2 = vert2->specList;
                 if (list1->negList != list2->negList) {
-                    cout << "before copy" << endl;
-                    cout << list1->negList << endl;
-                    cout << list2->negList << endl;
                     if(list1->negList == NULL || list2->negList == NULL) exit(1);
                     list1->copyNegList(list2->negList);
-                    cout << "after copy" << endl;
                 }
-                cout << "finished" << endl;
             }
         }
     }

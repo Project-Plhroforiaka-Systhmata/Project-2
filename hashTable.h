@@ -13,7 +13,7 @@ public:
     int hashFunction(string, int);
     hashTable(int);
     void insert(string, vertex*);
-    vertex* search(string);
+    vertex* search(string, string);
     ~hashTable();
 };
 

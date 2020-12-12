@@ -8,9 +8,9 @@ using namespace std;
 class vertex {
 public:
     int printed;
-    string spec, itemSpecs;
+    string spec, id, itemSpecs;
     list *specList;
-    vertex(string, string);
+    vertex(string, string, string);
     int copyList(list*);
     void printList();
     ~vertex();
