@@ -96,33 +96,28 @@ int main(int argc, char **argv){
 
         if(leftSpecId == "left_spec_id") continue;
 
-        string key1 = leftSpecId, key2 = rightSpecId;
-        key1 = regex_replace(key1, regex("[^0-9]"), "");
-        key2 = regex_replace(key2, regex("[^0-9]"), "");
+
+        if (label == "1") {
+            string key1 = leftSpecId, key2 = rightSpecId;
+            key1 = regex_replace(key1, regex("[^0-9]"), "");
+            key2 = regex_replace(key2, regex("[^0-9]"), "");
 
 
-        //fix specId formats to match format in hashTable
-        leftSpecId.append(".json");
-        rightSpecId.append(".json");
-        leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
-        rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
+            //fix specId formats to match format in hashTable
+            leftSpecId.append(".json");
+            rightSpecId.append(".json");
+            leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
+            rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
 
-        vertex *vert1, *vert2;
-        vert1 = hash->search(leftSpecId, key1);
-        vert2 = hash->search(rightSpecId, key2);
-
-
-        if(vert1 != nullptr && vert2 != nullptr) {
-
-            if (label == "1") {
-
-                //if leftSpecId and rightSpecId exist and are not already in the same list
-                if (vert1->specList != vert2->specList) {
-                    //copy leftSpecId's list to rightSpecId's list
-                    vert1->copyList(vert2->specList);
-                }
-
+            vertex *vert1, *vert2;
+            vert1 = hash->search(leftSpecId, key1);
+            vert2 = hash->search(rightSpecId, key2);
+            //if leftSpecId and rightSpecId exist and are not already in the same list
+            if (vert1 != nullptr && vert2 != nullptr && vert1->specList != vert2->specList) {
+                //copy leftSpecId's list to rightSpecId's list
+                vert1->copyList(vert2->specList);
             }
+
         }
     }
 
@@ -148,30 +143,28 @@ int main(int argc, char **argv){
 
         if(leftSpecId == "left_spec_id") continue;
 
-        string key1 = leftSpecId, key2 = rightSpecId;
-        key1 = regex_replace(key1, regex("[^0-9]"), "");
-        key2 = regex_replace(key2, regex("[^0-9]"), "");
+
+        if(label == "0") {
+            string key1 = leftSpecId, key2 = rightSpecId;
+            key1 = regex_replace(key1, regex("[^0-9]"), "");
+            key2 = regex_replace(key2, regex("[^0-9]"), "");
 
 
-        //fix specId formats to match format in hashTable
-        leftSpecId.append(".json");
-        rightSpecId.append(".json");
-        leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
-        rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
+            //fix specId formats to match format in hashTable
+            leftSpecId.append(".json");
+            rightSpecId.append(".json");
+            leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
+            rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
 
-        vertex *vert1, *vert2;
-        vert1 = hash->search(leftSpecId, key1);
-        vert2 = hash->search(rightSpecId, key2);
+            vertex *vert1, *vert2;
+            vert1 = hash->search(leftSpecId, key1);
+            vert2 = hash->search(rightSpecId, key2);
 
-
-        if(vert1 != nullptr && vert2 != nullptr) {
-
-             if(label == "0") {
+            if (vert1 != nullptr && vert2 != nullptr) {
                 list *list1, *list2;
                 list1 = vert1->specList;
                 list2 = vert2->specList;
-                if (list1->negList != list2->negList) {
-                    if(list1->negList == NULL || list2->negList == NULL) exit(1);
+                if(list1->negList != list2->negList) {
                     list1->copyNegList(list2->negList);
                 }
             }
