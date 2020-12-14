@@ -94,8 +94,6 @@ int main(int argc, char **argv){
             }
         }
 
-        if(leftSpecId == "left_spec_id") continue;
-
 
         if (label == "1") {
             string key1 = leftSpecId, key2 = rightSpecId;
@@ -140,9 +138,6 @@ int main(int argc, char **argv){
                     label = word;
             }
         }
-
-        if(leftSpecId == "left_spec_id") continue;
-
 
         if(label == "0") {
             string key1 = leftSpecId, key2 = rightSpecId;
