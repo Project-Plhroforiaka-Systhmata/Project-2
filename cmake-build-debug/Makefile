@@ -278,6 +278,33 @@ negativeList.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/negativeList.cpp.s
 .PHONY : negativeList.cpp.s
 
+vector.o: vector.cpp.o
+
+.PHONY : vector.o
+
+# target to build an object file
+vector.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/vector.cpp.o
+.PHONY : vector.cpp.o
+
+vector.i: vector.cpp.i
+
+.PHONY : vector.i
+
+# target to preprocess a source file
+vector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/vector.cpp.i
+.PHONY : vector.cpp.i
+
+vector.s: vector.cpp.s
+
+.PHONY : vector.s
+
+# target to generate assembly for a file
+vector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/vector.cpp.s
+.PHONY : vector.cpp.s
+
 vertex.o: vertex.cpp.o
 
 .PHONY : vertex.o
@@ -329,6 +356,9 @@ help:
 	@echo "... negativeList.o"
 	@echo "... negativeList.i"
 	@echo "... negativeList.s"
+	@echo "... vector.o"
+	@echo "... vector.i"
+	@echo "... vector.s"
 	@echo "... vertex.o"
 	@echo "... vertex.i"
 	@echo "... vertex.s"
