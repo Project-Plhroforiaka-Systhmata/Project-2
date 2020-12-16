@@ -4,11 +4,12 @@
 template <class T>
 class myVector {
 public:
-    T **buffer;
+    T **sBuffer;
+    T *buffer;
     int size, maxCapacity;
     bool sparse;
     myVector(int, bool);
-    void pushBack(T&, int = 0);
+    void pushBack(T, int = 0);
     void expand(int);
     ~myVector();
 };
@@ -16,34 +17,31 @@ public:
 template<class T>
 myVector<T>::myVector(int arrSize, bool dim): size(0), maxCapacity(arrSize), sparse(dim) {
     if(sparse){
-        buffer = new T*[maxCapacity];
+        sBuffer = new T*[maxCapacity];
         for(int i = 0; i < maxCapacity; i++){
-            buffer[i] = new T[2];
+            sBuffer[i] = new T[2];
         }
     } else {
-        buffer = new T*[maxCapacity];
+        buffer = new T[maxCapacity];
     }
 }
 
 template<class T>
-void myVector<T>::pushBack(T &data, int index) {
+void myVector<T>::pushBack(T data, int index) {
     if(!sparse) {
         if (size == maxCapacity) expand(maxCapacity + 5);
-        buffer[size++] = &data;
+        buffer[size++] = data;
     } else {
         if (size == maxCapacity) expand(maxCapacity + 5);
-        buffer[size][0] = index;
-        buffer[size++][1] = data;
+        sBuffer[size][0] = index;
+        sBuffer[size++][1] = data;
     }
 }
 
 template<class T>
 void myVector<T>::expand(int newCapacity) {
     if(!sparse) {
-        T **newBuffer = new T*[newCapacity];
-        for(int i = 0; i < newCapacity; i++){
-            newBuffer[i] = new T[2];
-        }
+        T *newBuffer = new T[newCapacity];
         for (int i = 0; i < size; i++) {
             newBuffer[i] = buffer[i];
         }
@@ -52,20 +50,34 @@ void myVector<T>::expand(int newCapacity) {
         buffer = newBuffer;
     } else {
         T **newBuffer = new T*[newCapacity];
-        for (int i = 0; i < size; i++) {
-            newBuffer[i][0] = buffer[i][0];
-            newBuffer[i][1] = buffer[i][1];
+        for(int i = 0; i < newCapacity; i++){
+            newBuffer[i] = new T[2];
         }
+        for (int i = 0; i < size; i++) {
+            newBuffer[i][0] = sBuffer[i][0];
+            newBuffer[i][1] = sBuffer[i][1];
+        }
+        for (int i = 0; i < maxCapacity; i++) {
+            delete[]sBuffer[i];
+        }
+        delete []sBuffer;
         maxCapacity = newCapacity;
-        delete []buffer;
-        buffer = newBuffer;
+        sBuffer = newBuffer;
     }
 
 }
 
 template<class T>
 myVector<T>::~myVector() {
-    delete []buffer;
+    if(sparse) {
+        for (int i = 0; i < maxCapacity; i++) {
+            delete[]sBuffer[i];
+        }
+        delete[]sBuffer;
+    } else {
+        delete []buffer;
+    }
+
 }
 
 
