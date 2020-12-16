@@ -7,8 +7,4 @@
 * Χρήστος Σκανδάλης sdi1600154                 GitHub: chrisskan 
 
 
-## Test Makefile Command
- make -f makefiletest
-
-
 ## Execute Command
