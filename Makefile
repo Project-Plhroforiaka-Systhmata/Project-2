@@ -8,6 +8,7 @@ LFLAGS	 =
 
 all: $(OBJS)
 	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
+	g++ acutest.h bucket.cpp negativeList.cpp hashTable.cpp list.cpp vertex.cpp tests.cpp -o tests
 
 main.o: main.cpp
 	$(CC) $(FLAGS) main.cpp -std=c++14
@@ -30,3 +31,4 @@ negativeList.o: negativeList.cpp
 
 clean:
 	rm -f $(OBJS) $(OUT)
+

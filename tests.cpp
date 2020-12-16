@@ -15,7 +15,7 @@ void test_createlist(void){
 
 void test_insertlist(void){
     list *mylist = new list();
-    mylist->insert(new vertex("lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal"));
+    mylist->insert(new vertex("lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal"));
     TEST_ASSERT(mylist->head != nullptr);
     TEST_ASSERT(mylist->head == mylist->tail);
     TEST_ASSERT(mylist->head->spec->spec == "lalalalalalalalallalalalalalallalalalalalalallal");
@@ -24,13 +24,13 @@ void test_insertlist(void){
 
 void test_poplist(void){
     list *mylist = new list();
-    mylist->insert(new vertex("lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal"));
+    mylist->insert(new vertex("lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal"));
     vertex *tmp = mylist->pop();
     TEST_ASSERT(tmp != nullptr);
     TEST_ASSERT(mylist->head == nullptr);
     TEST_ASSERT(mylist->tail == nullptr);
-    mylist->insert(new vertex("lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal"));
-    mylist->insert(new vertex("lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal"));
+    mylist->insert(new vertex("lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal"));
+    mylist->insert(new vertex("lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal","lalalalalalalalallalalalalalallalalalalalalallal"));
     mylist->pop();
     TEST_ASSERT(mylist->head == mylist->tail);
     mylist->pop();
@@ -47,7 +47,7 @@ void test_poplist(void){
 
 void test_destroylist(void){
     list *tmp = new list();
-    tmp->insert(new vertex("test","test"));
+    tmp->insert(new vertex("test","test","test"));
     delete tmp;
     TEST_ASSERT(sizeof(tmp) == 8);
 }
@@ -64,21 +64,21 @@ void test_createhash(void){
 
 void test_inserthash(void){
     hashTable *table = new hashTable(300);
-    table->insert("test",new vertex("test","test"));
-    table->insert("test1",new vertex("test1","test1"));
-    table->insert("test2",new vertex("test2","test2"));
-    table->insert("SDXCV",new vertex("SDXCV","SDXCV"));
-    table->insert("lala",new vertex("lala","lala"));
-    TEST_ASSERT(table->search("test") != nullptr);
-    TEST_ASSERT(table->search("test1") != nullptr);
-    TEST_ASSERT(table->search("test2") != nullptr);
-    TEST_ASSERT(table->search("sdfsdfsdf") == nullptr);
-    TEST_ASSERT(table->search("lala") != nullptr);
+    table->insert("test",new vertex("test","test","test"));
+    table->insert("test1",new vertex("test1","test1","test1"));
+    table->insert("test2",new vertex("test2","test2","test2"));
+    table->insert("SDXCV",new vertex("SDXCV","SDXCV","SDXCV"));
+    table->insert("lala",new vertex("lala","lala","lala"));
+    TEST_ASSERT(table->search("test","test") != nullptr);
+    TEST_ASSERT(table->search("test1","test1") != nullptr);
+    TEST_ASSERT(table->search("test2","test2") != nullptr);
+    TEST_ASSERT(table->search("sdfsdfsdf","sdfsdfsdf") == nullptr);
+    TEST_ASSERT(table->search("lala","lala") != nullptr);
     //overflow test below
     long int before = time(0);
     long int now = 0;
     while (true){
-        table->insert("test",new vertex("test1","test"));
+        table->insert("test",new vertex("test1","test","test"));
         now = time(0);
         if ((now - before) > 5){
             break;
@@ -89,17 +89,17 @@ void test_inserthash(void){
 
 
 void test_vertexcopy(void){
-    vertex *one = new vertex("test","test");
+    vertex *one = new vertex("test","test","test");
     list *tmp = new list();
-    tmp->insert(new vertex("1","1"));
-    tmp->insert(new vertex("2","2"));
-    tmp->insert(new vertex("3","3"));
+    tmp->insert(new vertex("1","1","1"));
+    tmp->insert(new vertex("2","2","2"));
+    tmp->insert(new vertex("3","3","3"));
     one->specList = tmp;
-    vertex *two = new vertex("test","test");
+    vertex *two = new vertex("test","test","test");
     tmp = new list();
-    tmp->insert(new vertex("4","4"));
-    tmp->insert(new vertex("5","5"));
-    tmp->insert(new vertex("6","6"));
+    tmp->insert(new vertex("4","4","4"));
+    tmp->insert(new vertex("5","5","5"));
+    tmp->insert(new vertex("6","6","6"));
     two->specList = tmp;
     two->copyList(one->specList);
     TEST_ASSERT(one->specList->head != nullptr);
@@ -139,16 +139,16 @@ void test_destroyhash(void){
 
 void test_search(void){
     hashTable *test = new hashTable(4);
-    test->insert("test",new vertex("test","test"));
-    test->insert("test",new vertex("test","test"));
-    test->insert("test",new vertex("test","test"));
-    test->insert("test",new vertex("test","test"));
-    test->insert("test",new vertex("test","test"));
-    test->insert("test",new vertex("test","test"));
-    test->insert("test",new vertex("test","test"));
-    test->insert("test1",new vertex("test1","test"));
-    TEST_ASSERT(test->search("test") != nullptr);
-    TEST_ASSERT(test->search("xcxcv") == nullptr);
+    test->insert("test",new vertex("test","test","test"));
+    test->insert("test",new vertex("test","test","test"));
+    test->insert("test",new vertex("test","test","test"));
+    test->insert("test",new vertex("test","test","test"));
+    test->insert("test",new vertex("test","test","test"));
+    test->insert("test",new vertex("test","test","test"));
+    test->insert("test",new vertex("test","test","test"));
+    test->insert("test1",new vertex("test1","test","test"));
+    TEST_ASSERT(test->search("test","test") != nullptr);
+    TEST_ASSERT(test->search("xcxcv","xcxcv") == nullptr);
 }
 
 TEST_LIST = {
