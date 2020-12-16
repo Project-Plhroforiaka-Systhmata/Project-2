@@ -33,9 +33,9 @@ int main(int argc, char **argv){
     ints.pushBack(5, sth);
     sth = 8;
     ints.pushBack(3, sth);
-    cout << ints.sBuffer[0][1] << endl;
-    cout << ints.sBuffer[1][1] << endl;
-    cout << ints.sBuffer[2][1] << endl;
+    cout << ints.sBuffer[0][0] << endl;
+    cout << ints.sBuffer[1][0] << endl;
+    cout << ints.sBuffer[2][0] << endl;
     auto *hash = new hashTable(1000);
     FILE *fp;
     DIR *dirp2,*dirp3;
