@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  Build_And_Run:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -23,8 +23,11 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Make Test
+      - name: Build
         run: |
           make
           ./tests
+          
+          
+
               
