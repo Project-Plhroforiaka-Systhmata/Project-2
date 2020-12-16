@@ -1,4 +1,7 @@
 #include "vector.h"
+#include <string>
+
+using namespace std;
 
 template<class T>
 vector<T>::vector(int arrSize, bool dim): size(0), maxCapacity(arrSize), dimension(dim) {

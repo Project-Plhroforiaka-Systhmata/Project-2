@@ -9,13 +9,14 @@
 #include <regex>
 #include <string>
 #include "hashTable.h"
+#include "vector.h"
 
 
 using namespace  std;
 
 int main(int argc, char **argv){
 
-
+    ::vector<string> uniqueWords(1000, false);
     auto *hash = new hashTable(1000);
     FILE *fp;
     DIR *dirp2,*dirp3;
