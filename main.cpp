@@ -16,7 +16,10 @@ using namespace  std;
 
 int main(int argc, char **argv){
 
-    ::vector<string> uniqueWords(1000, false);
+    myVector<string> uniqueWords(1000, false);
+    string wordte = "test";
+    uniqueWords.pushBack(wordte);
+    cout << *uniqueWords.buffer[0] << endl;
     auto *hash = new hashTable(1000);
     FILE *fp;
     DIR *dirp2,*dirp3;

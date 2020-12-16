@@ -2,16 +2,71 @@
 #define PROJECT_2_VECTOR_H
 
 template <class T>
-class vector {
+class myVector {
 public:
-    T *buffer;
+    T **buffer;
     int size, maxCapacity;
-    bool dimension;
-    vector(int, bool);
-    void pushBack(T, int = 0);
+    bool sparse;
+    myVector(int, bool);
+    void pushBack(T&, int = 0);
     void expand(int);
-    ~vector();
+    ~myVector();
 };
+
+template<class T>
+myVector<T>::myVector(int arrSize, bool dim): size(0), maxCapacity(arrSize), sparse(dim) {
+    if(sparse){
+        buffer = new T*[maxCapacity];
+        for(int i = 0; i < maxCapacity; i++){
+            buffer[i] = new T[2];
+        }
+    } else {
+        buffer = new T*[maxCapacity];
+    }
+}
+
+template<class T>
+void myVector<T>::pushBack(T &data, int index) {
+    if(!sparse) {
+        if (size == maxCapacity) expand(maxCapacity + 5);
+        buffer[size++] = &data;
+    } else {
+        if (size == maxCapacity) expand(maxCapacity + 5);
+        buffer[size][0] = index;
+        buffer[size++][1] = data;
+    }
+}
+
+template<class T>
+void myVector<T>::expand(int newCapacity) {
+    if(!sparse) {
+        T **newBuffer = new T*[newCapacity];
+        for(int i = 0; i < newCapacity; i++){
+            newBuffer[i] = new T[2];
+        }
+        for (int i = 0; i < size; i++) {
+            newBuffer[i] = buffer[i];
+        }
+        maxCapacity = newCapacity;
+        delete []buffer;
+        buffer = newBuffer;
+    } else {
+        T **newBuffer = new T*[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newBuffer[i][0] = buffer[i][0];
+            newBuffer[i][1] = buffer[i][1];
+        }
+        maxCapacity = newCapacity;
+        delete []buffer;
+        buffer = newBuffer;
+    }
+
+}
+
+template<class T>
+myVector<T>::~myVector() {
+    delete []buffer;
+}
 
 
 #endif
