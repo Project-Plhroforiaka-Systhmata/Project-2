@@ -1,7 +1,6 @@
 #include "list.h"
 #include "vertex.h"
 #include <iostream>
-#include <unistd.h>
 
 using namespace std;
 

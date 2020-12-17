@@ -8,7 +8,6 @@
 #include <sstream>
 #include <regex>
 #include <string>
-#include <unistd.h>
 #include "hashTable.h"
 #include "vector.h"
 
@@ -166,6 +165,7 @@ int main(int argc, char **argv){
             }
         }
     }
+    fin.close();
 
     //print every vertex's list in the hashable
     cout << "All positive connections\n" << endl;
