@@ -21,8 +21,10 @@ myVector<T>::myVector(int arrSize, bool dim): size(0), maxCapacity(arrSize), spa
         for(int i = 0; i < maxCapacity; i++){
             sBuffer[i] = new T[2];
         }
+        buffer = NULL;
     } else {
         buffer = new T[maxCapacity];
+        sBuffer = NULL;
     }
 }
 

@@ -1,10 +1,11 @@
 #include "list.h"
 #include "vertex.h"
 #include <iostream>
+#include <unistd.h>
 
 using namespace std;
 
-list::list() {
+list::list(): printed(0) {
     head = NULL;
     tail = NULL;
     negList = new negativeList;
@@ -63,6 +64,28 @@ int list::copyNegList(negativeList *cpList) {
     return 0;
 }
 
+void list::printNegList() {
+    if(printed) return;
+    node *temp = head;
+    while(temp != NULL) {
+        lnode *temp2 = negList->head;
+        while (temp2 != NULL){
+            if(temp2->spec == this || temp2->spec->printed){
+                temp2 = temp2->next;
+                continue;
+            }
+            node *temp3 = temp2->spec->head;
+            while(temp3 != NULL){
+                cout << temp->spec->spec << " " << temp3->spec->spec << endl;
+                temp3 = temp3->next;
+            }
+            temp2 = temp2->next;
+        }
+        temp = temp->next;
+    }
+    printed = 1;
+}
+
 list::~list() {
     node *temp;
     temp = head;
@@ -84,3 +107,5 @@ list::~list() {
         delete negList;    //delete the list
     }
 }
+
+

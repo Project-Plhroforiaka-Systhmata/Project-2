@@ -45,6 +45,8 @@ regex
 -
 string
 -
+unistd.h
+-
 hashTable.h
 /home/dennis/CLionProjects/Project-2/hashTable.h
 vector.h

@@ -15,12 +15,14 @@ struct node {
 
 class list {
 public:
+    int printed;
     node *head, *tail;
     negativeList *negList;
     list();
     int insert(vertex*);
     vertex* pop();
     int copyNegList(negativeList*);
+    void printNegList();
     ~list();
 };
 

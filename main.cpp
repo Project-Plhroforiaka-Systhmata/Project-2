@@ -8,6 +8,7 @@
 #include <sstream>
 #include <regex>
 #include <string>
+#include <unistd.h>
 #include "hashTable.h"
 #include "vector.h"
 
@@ -15,27 +16,7 @@
 using namespace  std;
 
 int main(int argc, char **argv){
-
     myVector<string> uniqueWords(1, false);
-    string wordte = "test";
-    uniqueWords.pushBack(wordte);
-    wordte = "TSOF";
-    uniqueWords.pushBack(wordte);
-    wordte = "NIONIOS";
-    uniqueWords.pushBack(wordte);
-    cout << uniqueWords.buffer[0] << endl;
-    cout << uniqueWords.buffer[1] << endl;
-    cout << uniqueWords.buffer[2] << endl;
-    myVector<int> ints(1, true);
-    int sth = 1;
-    ints.pushBack(10, sth);
-    sth = 7;
-    ints.pushBack(5, sth);
-    sth = 8;
-    ints.pushBack(3, sth);
-    cout << ints.sBuffer[0][0] << endl;
-    cout << ints.sBuffer[1][0] << endl;
-    cout << ints.sBuffer[2][0] << endl;
     auto *hash = new hashTable(1000);
     FILE *fp;
     DIR *dirp2,*dirp3;
@@ -137,6 +118,7 @@ int main(int argc, char **argv){
 
         }
     }
+    fin.close();
 
     fin.open(argv[2], ios::in);
     while (getline(fin, line)){
@@ -186,11 +168,23 @@ int main(int argc, char **argv){
     }
 
     //print every vertex's list in the hashable
+    cout << "All positive connections\n" << endl;
     for (int i = 0; i < hash->numBuckets; i++) {
         bucket *temp = hash->table[i];
         while(temp != NULL) {
             for(int j = 0; j < temp->currentRecords; j++){
                 temp->records[j].spec->printList();
+            }
+            temp = temp->next;
+        }
+    }
+
+    cout << "\n\nAll negative connections\n" << endl;
+    for (int i = 0; i < hash->numBuckets; i++) {
+        bucket *temp = hash->table[i];
+        while(temp != NULL) {
+            for(int j = 0; j < temp->currentRecords; j++){
+                temp->records[j].spec->specList->printNegList();
             }
             temp = temp->next;
         }
