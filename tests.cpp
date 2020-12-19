@@ -4,6 +4,7 @@
 #include "vertex.h"
 #include "string.h"
 #include "vector.h"
+#include "BF.h"
 #include <ctime>
 #include <iostream>
 

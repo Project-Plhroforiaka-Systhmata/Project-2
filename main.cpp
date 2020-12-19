@@ -16,7 +16,6 @@ using namespace  std;
 
 int main(int argc, char **argv){
     int worlds=0;
-    myVector<string> uniqueWords(1, true);
     myVector<string> voc(100000, false);
     auto *hash = new hashTable(1000);
     FILE *fp;
@@ -211,6 +210,7 @@ int main(int argc, char **argv){
 
     dirp2 = opendir(argv[1]);
     while ((entry2 = readdir(dirp2)) != NULL) {
+        
         strcpy(path,argv[1]);
         if(entry2->d_name[0]=='.') continue;
 
@@ -218,16 +218,30 @@ int main(int argc, char **argv){
         strcat(path3,"/");
         strcat(entry2->d_name,"/");
         strcat(path,entry2->d_name);
+        cout<<entry2->d_name<<endl;
 
         dirp3 = opendir(path);
+        vertex* tmpvertex;
         while ((entry3 = readdir(dirp3)) != NULL) {
             specs="";
             strcpy(path2,path);
             strcpy(realPath,path3);
-            
             if(entry3->d_name[0]=='.') continue;
+
             strcat(path2,entry3->d_name);
             strcat(realPath,entry3->d_name);
+
+
+            string key = entry3->d_name;
+            key = regex_replace(key, regex(".json"), "");
+            //cout<<key<<endl;
+            
+            
+        
+            string searchPath;
+            searchPath+=realPath;
+            //cout<<searchPath<<endl;
+            tmpvertex=hash->search(searchPath,key);
 
             fp = fopen(path2, "r");
             while (fgets(fline, sizeof(fline), fp))
@@ -236,19 +250,64 @@ int main(int argc, char **argv){
             }
             fclose(fp);
             int index=0;
+            int vocIndex=-1;
+            int flag=0;
             char* pch;
             char specs_string[specs.length()+1];
             strcpy(specs_string,specs.c_str());
             pch = strtok (specs_string," ,.-");
+            //cout<<searchPath<<endl;
             while (pch != NULL)
             {
+
+                flag=0;
                 string str;
                 str+=pch;
                 if(!bf->find(pch))
                 {
+                    
                     index=voc.pushBack(str);
+                    tmpvertex->jsonWords->pushBack(1,index);
                     //uniqueWords.pushBack(str,index);
                 }
+                else
+                {
+                    for(int i=0;i<voc.size;i+=2)
+                    {
+                        if(voc.buffer[i]==str)
+                        {
+                            flag=1;
+                            vocIndex=i;
+                            break;
+                        }
+                    }
+                    for(int i=1;i<voc.size;i+=2)
+                    {
+                        if(voc.buffer[i]==str)
+                        {
+                            flag=1;
+                            vocIndex=i;
+                            break;
+                        }
+                    }
+                    if(flag==0)
+                    {
+                        index=voc.pushBack(str);
+                        tmpvertex->jsonWords->pushBack(1,index);
+                    }
+                    else
+                    {
+                        for(int j=0;j<tmpvertex->jsonWords->size;j++)
+                        {
+                            if(tmpvertex->jsonWords->sBuffer[j][0]==vocIndex)
+                            {
+                                tmpvertex->jsonWords->sBuffer[j][1]++;
+                            }
+                        }
+                    }
+                    
+                }
+                
                 
                 
                 bf->insert(pch);
@@ -271,6 +330,9 @@ int main(int argc, char **argv){
     if(bf->search("resolution")) cout << "TRUE" << endl;
     else cout<<"FALSE"<<endl;
 
+    
+    
+    
 
 
     delete hash;
