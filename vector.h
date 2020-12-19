@@ -161,18 +161,6 @@ void BF::resetNextUpdate() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 template <class T>
 class myVector {
 public:
