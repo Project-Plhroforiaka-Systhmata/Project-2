@@ -49,7 +49,7 @@ int main(int argc, char **argv){
             specs="";
             strcpy(path2,path);
             strcpy(realPath,path3);
-            
+
             if(entry3->d_name[0]=='.') continue;
             strcat(path2,entry3->d_name);
             strcat(realPath,entry3->d_name);
