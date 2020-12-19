@@ -10,7 +10,7 @@ public:
     int size, maxCapacity;
     bool sparse;
     myVector(int, bool);
-    void pushBack(T, int = 0);
+    int pushBack(T, int = 0);
     void expand(int);
     ~myVector();
 };
@@ -30,14 +30,16 @@ myVector<T>::myVector(int arrSize, bool dim): size(0), maxCapacity(arrSize), spa
 }
 
 template<class T>
-void myVector<T>::pushBack(T data, int index) {
+int myVector<T>::pushBack(T data, int index) {
     if(!sparse) {
         if (size == maxCapacity) expand(maxCapacity + 5);
         buffer[size++] = data;
+        return size - 1;
     } else {
         if (size == maxCapacity) expand(maxCapacity + 5);
         sBuffer[size][0] = index;
         sBuffer[size++][1] = data;
+        return  size - 1;
     }
 }
 
