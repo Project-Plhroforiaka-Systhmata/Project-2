@@ -2,6 +2,7 @@
 #define PROJECT_1_VERTEX_H
 #include <string>
 #include "list.h"
+#include "vector.h"
 
 using namespace std;
 
@@ -9,6 +10,7 @@ class vertex {
 public:
     int printed;
     string spec, id, itemSpecs;
+    myVector<int> *jsonWords;
     list *specList;
     vertex(string, string, string);
     int copyList(list*);

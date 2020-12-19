@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/dennis/CLionProjects/Project-2/BF.cpp">
+			<Option target="Project-2"/>
+		</Unit>
+		<Unit filename="/home/dennis/CLionProjects/Project-2/BF.h">
+			<Option target="Project-2"/>
+		</Unit>
 		<Unit filename="/home/dennis/CLionProjects/Project-2/bucket.cpp">
 			<Option target="Project-2"/>
 		</Unit>

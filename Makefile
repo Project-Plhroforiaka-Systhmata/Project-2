@@ -1,6 +1,6 @@
 OBJS	= main.o vertex.o list.o bucket.o hashTable.o negativeList.o
-SOURCE	= main.cpp vertex.cpp list.cpp bucket.cpp hashTable.cpp negativeList.cpp
-HEADER	= vertex.h list.h bucket.h hashTable.h negativeList.h
+SOURCE	= main.cpp vertex.cpp list.cpp bucket.cpp hashTable.cpp negativeList.cpp BF.cpp
+HEADER	= vertex.h list.h bucket.h hashTable.h negativeList.h BF.h
 OUT	= project2
 CC	 = g++
 FLAGS	 = -g -c -Wall
@@ -27,6 +27,9 @@ hashTable.o: hashTable.cpp
 
 negativeList.o: negativeList.cpp
 	$(CC) $(FLAGS) negativeList.cpp -std=c++14
+
+BF.o: BF.cpp
+	$(CC) $(FLAGS) BF.cpp -std=c++14
 
 
 clean:

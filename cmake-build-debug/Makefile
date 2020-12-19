@@ -143,6 +143,33 @@ Project-2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/build
 .PHONY : Project-2/fast
 
+BF.o: BF.cpp.o
+
+.PHONY : BF.o
+
+# target to build an object file
+BF.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/BF.cpp.o
+.PHONY : BF.cpp.o
+
+BF.i: BF.cpp.i
+
+.PHONY : BF.i
+
+# target to preprocess a source file
+BF.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/BF.cpp.i
+.PHONY : BF.cpp.i
+
+BF.s: BF.cpp.s
+
+.PHONY : BF.s
+
+# target to generate assembly for a file
+BF.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project-2.dir/build.make CMakeFiles/Project-2.dir/BF.cpp.s
+.PHONY : BF.cpp.s
+
 bucket.o: bucket.cpp.o
 
 .PHONY : bucket.o
@@ -341,6 +368,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Project-2"
+	@echo "... BF.o"
+	@echo "... BF.i"
+	@echo "... BF.s"
 	@echo "... bucket.o"
 	@echo "... bucket.i"
 	@echo "... bucket.s"
