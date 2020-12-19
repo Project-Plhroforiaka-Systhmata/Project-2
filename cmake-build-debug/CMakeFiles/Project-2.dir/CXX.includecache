@@ -6,45 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/dennis/CLionProjects/Project-2/BF.cpp
-
 /home/dennis/CLionProjects/Project-2/BF.h
 cstring
 -
 
-/home/dennis/CLionProjects/Project-2/bucket.cpp
-bucket.h
-/home/dennis/CLionProjects/Project-2/bucket.h
-iostream
--
-
 /home/dennis/CLionProjects/Project-2/bucket.h
 string
 -
 vertex.h
 /home/dennis/CLionProjects/Project-2/vertex.h
 
-/home/dennis/CLionProjects/Project-2/hashTable.cpp
-sstream
--
-iostream
--
-hashTable.h
-/home/dennis/CLionProjects/Project-2/hashTable.h
-
 /home/dennis/CLionProjects/Project-2/hashTable.h
 string
 -
 bucket.h
 /home/dennis/CLionProjects/Project-2/bucket.h
-
-/home/dennis/CLionProjects/Project-2/list.cpp
-list.h
-/home/dennis/CLionProjects/Project-2/list.h
-vertex.h
-/home/dennis/CLionProjects/Project-2/vertex.h
-iostream
--
 
 /home/dennis/CLionProjects/Project-2/list.h
 string
@@ -83,12 +59,6 @@ string
 -
 
 /home/dennis/CLionProjects/Project-2/vector.h
-
-/home/dennis/CLionProjects/Project-2/vertex.cpp
-iostream
--
-vertex.h
-/home/dennis/CLionProjects/Project-2/vertex.h
 
 /home/dennis/CLionProjects/Project-2/vertex.h
 string

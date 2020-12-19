@@ -15,6 +15,23 @@
 using namespace  std;
 
 int main(int argc, char **argv){
+    string stopwords[127], specialChars[34];
+    fstream fin;
+    fin.open("stopwords", ios::in);
+    string line;
+    int ind = 0;
+    while (getline(fin, line)){
+        stopwords[ind++] = line;
+    }
+    fin.close();
+
+    fin.open("specialChars", ios::in);
+    ind = 0;
+    while (getline(fin, line)){
+        specialChars[ind++] = line;
+    }
+    fin.close();
+
     int worlds=0;
     myVector<string> voc(100000, false);
     auto *hash = new hashTable(1000);
@@ -84,9 +101,8 @@ int main(int argc, char **argv){
     }
     closedir(dirp2);
 
-    fstream fin;
     fin.open(argv[2], ios::in);
-    string line, word, leftSpecId, rightSpecId, label;
+    string word, leftSpecId, rightSpecId, label;
     int count;
     while (getline(fin, line)){
         stringstream s(line);
@@ -251,7 +267,7 @@ int main(int argc, char **argv){
             fclose(fp);
             int index=0;
             int vocIndex=-1;
-            int flag=0;
+            int flag=0, flag1 = 0;
             char* pch;
             char specs_string[specs.length()+1];
             strcpy(specs_string,specs.c_str());
@@ -261,8 +277,35 @@ int main(int argc, char **argv){
             {
 
                 flag=0;
+                flag1 = 0;
                 string str;
                 str+=pch;
+                string chars;
+
+                transform(str.begin(), str.end(), str.begin(), ::tolower);
+
+                for(int i = 0; i < 34; i++) {
+                    chars += specialChars[i];
+                }
+
+                str.erase(remove_if(str.begin(), str.end(), [&chars](const char& c) {
+                    return chars.find(c) != string::npos;
+                }), str.end());
+
+
+                for(int i = 0; i < 127; i++) {
+                    if(str == stopwords[i]){
+                        flag1 = 1;
+                        break;
+                    }
+                }
+
+
+                if(flag1 || str == "\n") {
+                    pch = strtok(NULL, " ,.-");
+                    continue;
+                }
+
                 if(!bf->find(pch))
                 {
                     
