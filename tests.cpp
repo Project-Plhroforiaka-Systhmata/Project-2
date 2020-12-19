@@ -3,6 +3,7 @@
 #include "hashTable.h"
 #include "vertex.h"
 #include "string.h"
+#include "vector.h"
 #include <ctime>
 #include <iostream>
 
@@ -147,9 +148,100 @@ void test_search(void){
     test->insert("test",new vertex("test","test","test"));
     test->insert("test",new vertex("test","test","test"));
     test->insert("test1",new vertex("test1","test","test"));
+    
     TEST_ASSERT(test->search("test","test") != nullptr);
     TEST_ASSERT(test->search("xcxcv","xcxcv") == nullptr);
 }
+
+void test_BF_create(){
+    BF *ligma;
+    for (int i = -1; i < 10000; i++){
+        ligma = new BF(11111,i);
+    }
+}
+
+void test_BF_insert(){
+    BF *ligma = new BF(11111,10);
+    for (int i = -1; i < 10000; i++){
+        ligma->insert("lalalalallalalalalal");
+    }
+}
+
+void test_BF_search(char *str){
+    BF *ligma = new BF(11111,10);
+    ligma->insert(str);
+    TEST_ASSERT(ligma->search(str));
+
+    for (int i = -1; i < 10000; i++){
+        ligma->insert("lalalalallalalalalal");
+    }
+    int allones = 1;
+    for (int i = 0 ; i < ligma->size; i++){
+        if (ligma->array[i]==0){
+            allones = 0;
+            break;
+        }
+    }
+    TEST_ASSERT(allones == 0);
+}
+
+void vector_test_insert(){
+    myVector<int> *vec = new myVector<int>(150,false);
+    for (int i = 0; i < 100000; i++){
+        vec->pushBack(i,true);
+    }
+    TEST_ASSERT(vec->size == 100000);
+
+    myVector<int> *vec1 = new myVector<int>(150,true);
+    for (int i = 0; i < 100001; i++){
+        vec1->pushBack(i,true);
+    }
+    TEST_ASSERT(vec1->size == 100001);
+}
+
+void test_createnlist(void){
+    negativeList *mylist = new negativeList();
+    TEST_ASSERT(mylist->head == nullptr);
+    TEST_ASSERT(mylist->tail == nullptr);
+}
+
+void test_insertnlist(void){
+    negativeList *mylist = new negativeList();
+    mylist->insert(new list());
+    TEST_ASSERT(mylist->head != nullptr);
+    TEST_ASSERT(mylist->head == mylist->tail);
+    
+}
+
+void test_popnlist(void){
+    negativeList *mylist = new negativeList();
+    mylist->insert(new list());
+    mylist->pop();
+    TEST_ASSERT(mylist->head == nullptr);
+    TEST_ASSERT(mylist->tail == nullptr);
+    mylist->insert(new list());
+    mylist->insert(new list());
+    mylist->pop();
+    TEST_ASSERT(mylist->head == mylist->tail);
+    mylist->pop();
+    TEST_ASSERT(mylist->head == nullptr);
+    TEST_ASSERT(mylist->tail == nullptr);
+    mylist->pop();
+    mylist->pop();
+    mylist->pop();
+    mylist->pop();
+    mylist->pop();
+    mylist->pop();
+}
+
+
+void test_destroynlist(void){
+    negativeList *tmp = new negativeList();
+    tmp->insert(new list());
+    delete tmp;
+    TEST_ASSERT(sizeof(tmp) == 8);
+}
+
 
 TEST_LIST = {
     {"list_create",test_createlist},
@@ -161,5 +253,13 @@ TEST_LIST = {
     {"Hash Table Search",test_search},
     {"Hash Table Destroy",test_destroyhash},
     {"Vertex List Copy",test_vertexcopy},
+    {"Bloom Filter Create",test_BF_create},
+    {"Bloom Filter Insert",test_BF_insert},
+    {"Bloom Filter Check Bit is 1",test_BF_insert},
+    {"Vector Insert",test_vertexcopy},
+    {"negativelist_create",test_createnlist},
+    {"negativelist_insert",test_insertnlist},
+    {"negativelist_pop",test_popnlist},
+    {"negativelist_destroy",test_destroynlist},
     {nullptr,nullptr},
 };

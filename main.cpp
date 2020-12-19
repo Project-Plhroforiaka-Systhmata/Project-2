@@ -16,7 +16,7 @@ using namespace  std;
 
 int main(int argc, char **argv){
     int worlds=0;
-    myVector<string> uniqueWords(1, false);
+    myVector<string> uniqueWords(1, true);
     myVector<string> voc(100000, false);
     auto *hash = new hashTable(1000);
     FILE *fp;
@@ -58,7 +58,7 @@ int main(int argc, char **argv){
             while (fgets(fline, sizeof(fline), fp))
             {
                 specs+=fline;
-
+                
             }
             fclose(fp);
             char* pch;
@@ -70,7 +70,7 @@ int main(int argc, char **argv){
                 string str;
                 str+=pch;
                 worlds++;
-
+                
                 pch = strtok (NULL, " ,.-");
             }
 
@@ -224,7 +224,7 @@ int main(int argc, char **argv){
             specs="";
             strcpy(path2,path);
             strcpy(realPath,path3);
-
+            
             if(entry3->d_name[0]=='.') continue;
             strcat(path2,entry3->d_name);
             strcat(realPath,entry3->d_name);
@@ -235,6 +235,7 @@ int main(int argc, char **argv){
                 specs+=fline;
             }
             fclose(fp);
+            int index=0;
             char* pch;
             char specs_string[specs.length()+1];
             strcpy(specs_string,specs.c_str());
@@ -243,12 +244,15 @@ int main(int argc, char **argv){
             {
                 string str;
                 str+=pch;
-                if(!bf->find(pch))
+                if(bf->find(pch)==false)
                 {
-                    voc.pushBack(str);
+                    index=voc.pushBack(str);
+                    //uniqueWords.pushBack(str,index);
                 }
+                
+                
                 bf->insert(pch);
-
+                
                 pch = strtok (NULL, " ,.-");
             }
         }
@@ -257,14 +261,17 @@ int main(int argc, char **argv){
     closedir(dirp2);
 
 
+    
 
 
-    if(bf->search("tsikitas")) cout << "TRUE" << endl;
+    if(bf->search("tsikitas")==true) cout<<"TRUE"<<endl;
     else cout<<"FALSE"<<endl;
-    if(bf->search("second")) cout << "TRUE" << endl;
+    if(bf->search("second")==true) cout<<"TRUE"<<endl;
     else cout<<"FALSE"<<endl;
-    if(bf->search("resolution")) cout << "TRUE" << endl;
+    if(bf->search("resolution")==true) cout<<"TRUE"<<endl;
     else cout<<"FALSE"<<endl;
+
+
 
     delete hash;
     return 0;
