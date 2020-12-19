@@ -15,7 +15,7 @@
 using namespace  std;
 
 int main(int argc, char **argv){
-    string stopwords[127], specialChars[34];
+    string stopwords[194], specialChars[34];
     fstream fin;
     fin.open("stopwords", ios::in);
     string line;
@@ -293,13 +293,12 @@ int main(int argc, char **argv){
                 }), str.end());
 
 
-                for(int i = 0; i < 127; i++) {
+                for(int i = 0; i < 195; i++) {
                     if(str == stopwords[i]){
                         flag1 = 1;
                         break;
                     }
                 }
-
 
                 if(flag1 || str == "\n") {
                     pch = strtok(NULL, " ,.-");
