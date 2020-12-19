@@ -9,7 +9,7 @@
 #include <regex>
 #include <string>
 #include "hashTable.h"
-#include "vector.h"
+#include "BF.h"
 
 
 using namespace  std;
@@ -244,7 +244,7 @@ int main(int argc, char **argv){
             {
                 string str;
                 str+=pch;
-                if(bf->find(pch)==false)
+                if(!bf->find(pch))
                 {
                     index=voc.pushBack(str);
                     //uniqueWords.pushBack(str,index);
@@ -264,11 +264,11 @@ int main(int argc, char **argv){
     
 
 
-    if(bf->search("tsikitas")==true) cout<<"TRUE"<<endl;
+    if(bf->search("tsikitas")) cout << "TRUE" << endl;
     else cout<<"FALSE"<<endl;
-    if(bf->search("second")==true) cout<<"TRUE"<<endl;
+    if(bf->search("second")) cout << "TRUE" << endl;
     else cout<<"FALSE"<<endl;
-    if(bf->search("resolution")==true) cout<<"TRUE"<<endl;
+    if(bf->search("resolution")) cout << "TRUE" << endl;
     else cout<<"FALSE"<<endl;
 
 
