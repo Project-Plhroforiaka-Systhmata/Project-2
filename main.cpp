@@ -16,7 +16,7 @@ using namespace  std;
 
 int main(int argc, char **argv){
     int worlds=0;
-    myVector<string> uniqueWords(1, false);
+    myVector<string> uniqueWords(1, true);
     myVector<string> voc(100000, false);
     auto *hash = new hashTable(1000);
     FILE *fp;
@@ -235,6 +235,7 @@ int main(int argc, char **argv){
                 specs+=fline;
             }
             fclose(fp);
+            int index=0;
             char* pch;
             char specs_string[specs.length()+1];
             strcpy(specs_string,specs.c_str());
@@ -245,8 +246,11 @@ int main(int argc, char **argv){
                 str+=pch;
                 if(bf->find(pch)==false)
                 {
-                    voc.pushBack(str);
+                    index=voc.pushBack(str);
+                    //uniqueWords.pushBack(str,index);
                 }
+                
+                
                 bf->insert(pch);
                 
                 pch = strtok (NULL, " ,.-");
@@ -257,6 +261,7 @@ int main(int argc, char **argv){
     closedir(dirp2);
 
 
+    
 
 
     if(bf->search("tsikitas")==true) cout<<"TRUE"<<endl;
@@ -265,6 +270,8 @@ int main(int argc, char **argv){
     else cout<<"FALSE"<<endl;
     if(bf->search("resolution")==true) cout<<"TRUE"<<endl;
     else cout<<"FALSE"<<endl;
+
+
 
     delete hash;
     return 0;
