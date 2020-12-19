@@ -15,7 +15,9 @@
 using namespace  std;
 
 int main(int argc, char **argv){
+    int worlds=0;
     myVector<string> uniqueWords(1, false);
+    myVector<string> voc(100000, false);
     auto *hash = new hashTable(1000);
     FILE *fp;
     DIR *dirp2,*dirp3;
@@ -56,8 +58,21 @@ int main(int argc, char **argv){
             while (fgets(fline, sizeof(fline), fp))
             {
                 specs+=fline;
+                
             }
             fclose(fp);
+            char* pch;
+            char specs_string[specs.length()+1];
+            strcpy(specs_string,specs.c_str());
+            pch = strtok (specs_string," ,.-");
+            while (pch != NULL)
+            {
+                string str;
+                str+=pch;
+                worlds++;
+                
+                pch = strtok (NULL, " ,.-");
+            }
 
             //keep json file id as key for the hash table
             string key = entry3->d_name;
@@ -189,6 +204,67 @@ int main(int argc, char **argv){
             temp = temp->next;
         }
     }
+
+    cout<<worlds<<endl;
+    int numOfUpdates=5;
+    BF* bf = new BF(worlds,numOfUpdates);
+
+    dirp2 = opendir(argv[1]);
+    while ((entry2 = readdir(dirp2)) != NULL) {
+        strcpy(path,argv[1]);
+        if(entry2->d_name[0]=='.') continue;
+
+        strcpy(path3, entry2->d_name);
+        strcat(path3,"/");
+        strcat(entry2->d_name,"/");
+        strcat(path,entry2->d_name);
+
+        dirp3 = opendir(path);
+        while ((entry3 = readdir(dirp3)) != NULL) {
+            specs="";
+            strcpy(path2,path);
+            strcpy(realPath,path3);
+            
+            if(entry3->d_name[0]=='.') continue;
+            strcat(path2,entry3->d_name);
+            strcat(realPath,entry3->d_name);
+
+            fp = fopen(path2, "r");
+            while (fgets(fline, sizeof(fline), fp))
+            {
+                specs+=fline;
+            }
+            fclose(fp);
+            char* pch;
+            char specs_string[specs.length()+1];
+            strcpy(specs_string,specs.c_str());
+            pch = strtok (specs_string," ,.-");
+            while (pch != NULL)
+            {
+                string str;
+                str+=pch;
+                if(bf->find(pch)==false)
+                {
+                    voc.pushBack(str);
+                }
+                bf->insert(pch);
+                
+                pch = strtok (NULL, " ,.-");
+            }
+        }
+        closedir(dirp3);
+    }
+    closedir(dirp2);
+
+
+
+
+    if(bf->search("tsikitas")==true) cout<<"TRUE"<<endl;
+    else cout<<"FALSE"<<endl;
+    if(bf->search("second")==true) cout<<"TRUE"<<endl;
+    else cout<<"FALSE"<<endl;
+    if(bf->search("resolution")==true) cout<<"TRUE"<<endl;
+    else cout<<"FALSE"<<endl;
 
     delete hash;
     return 0;
