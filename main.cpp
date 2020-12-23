@@ -262,7 +262,19 @@ int main(int argc, char **argv){
             fp = fopen(path2, "r");
             while (fgets(fline, sizeof(fline), fp))
             {
+                int flineindex=-1;
+                for(int i=0;i<strlen(fline);i++)
+                {
+                    if(fline[i]=='"' && fline[i+1]==':')
+                    {
+                        flineindex=i+1;
+                        
+                        break;
+                    }
+                }
+                strcpy(fline,&fline[flineindex+1]);
                 specs+=fline;
+                
             }
             fclose(fp);
             int index=0;
