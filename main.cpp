@@ -34,10 +34,6 @@ int main(int argc, char **argv){
 
     int worlds=0;
     myVector<string> voc(100000, false);
-    myVector<int> idfVoc(voc.size, false);
-    for(int i = 0; i < idfVoc.size; i++){
-        idfVoc.buffer[i] = 0;
-    }
     auto *hash = new hashTable(1000);
     FILE *fp;
     DIR *dirp2,*dirp3;
@@ -315,6 +311,8 @@ int main(int argc, char **argv){
                     }
                 }
 
+                str = regex_replace(str, regex("\n"), "");
+
                 if(flag1 || str == "\n") {
                     pch = strtok(NULL, " ");
                     continue;
@@ -374,6 +372,27 @@ int main(int argc, char **argv){
     }
     closedir(dirp2);
 
+
+    myVector<int> idfVoc(voc.size, false);
+    for(int i = 0; i < idfVoc.maxCapacity; i++){
+        idfVoc.buffer[i] = 0;
+    }
+
+    for (int i = 0; i < hash->numBuckets; i++) {
+        bucket *temp = hash->table[i];
+        while(temp != NULL) {
+            for(int j = 0; j < temp->currentRecords; j++) {
+                for (int k = 0; k < temp->records[j].spec->jsonWords->size; k++) {
+                    idfVoc.buffer[temp->records[j].spec->jsonWords->sBuffer[k][0]]++;
+                }
+            }
+            temp = temp->next;
+        }
+    }
+
+    for(int i = 0; i < idfVoc.maxCapacity; i++){
+        cout << voc.buffer[i] << " " << idfVoc.buffer[i] << endl;
+    }
     
 
 
@@ -383,10 +402,6 @@ int main(int argc, char **argv){
     else cout<<"FALSE"<<endl;
     if(bf->search("resolution")) cout << "TRUE" << endl;
     else cout<<"FALSE"<<endl;*/
-
-
-
-    cout << hash->table[1]->records[1].spec->jsonWords->size << endl;
 
 
     delete hash;
