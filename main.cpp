@@ -34,6 +34,10 @@ int main(int argc, char **argv){
 
     int worlds=0;
     myVector<string> voc(100000, false);
+    myVector<int> idfVoc(voc.size, false);
+    for(int i = 0; i < idfVoc.size; i++){
+        idfVoc.buffer[i] = 0;
+    }
     auto *hash = new hashTable(1000);
     FILE *fp;
     DIR *dirp2,*dirp3;
@@ -295,8 +299,8 @@ int main(int argc, char **argv){
 
                 transform(str.begin(), str.end(), str.begin(), ::tolower);
 
-                for(int i = 0; i < 34; i++) {
-                    chars += specialChars[i];
+                for(auto & specialChar : specialChars) {
+                    chars += specialChar;
                 }
 
                 str.erase(remove_if(str.begin(), str.end(), [&chars](const char& c) {
@@ -304,8 +308,8 @@ int main(int argc, char **argv){
                 }), str.end());
 
 
-                for(int i = 0; i < 195; i++) {
-                    if(str == stopwords[i]){
+                for(auto & stopword : stopwords) {
+                    if(str == stopword){
                         flag1 = 1;
                         break;
                     }
@@ -380,9 +384,9 @@ int main(int argc, char **argv){
     if(bf->search("resolution")) cout << "TRUE" << endl;
     else cout<<"FALSE"<<endl;*/
 
-    
-    
-    
+
+
+    cout << hash->table[1]->records[1].spec->jsonWords->size << endl;
 
 
     delete hash;
