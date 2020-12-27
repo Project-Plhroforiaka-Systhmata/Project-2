@@ -34,10 +34,6 @@ int main(int argc, char **argv){
 
     int worlds=0;
     myVector<string> voc(100000, false);
-    myVector<int> idfVoc(voc.size, false);
-    for(int i = 0; i < idfVoc.size; i++){
-        idfVoc.buffer[i] = 0;
-    }
     auto *hash = new hashTable(1000);
     FILE *fp;
     DIR *dirp2,*dirp3;
@@ -374,7 +370,23 @@ int main(int argc, char **argv){
     }
     closedir(dirp2);
 
-    
+
+    cout<<voc.size<<endl;
+    myVector<int> idfVoc(voc.size, false);
+    for(int i = 0; i < idfVoc.size; i++){
+        idfVoc.buffer[i] = 0;
+    }
+    for (int i = 0; i < hash->numBuckets; i++) {
+        bucket *temp = hash->table[i];
+        while(temp != NULL) {
+            for(int j = 0; j < temp->currentRecords - 1; j++) {
+                for (int k = 0; k < temp->records[j].spec->jsonWords->size; k++) {
+                    idfVoc.buffer[temp->records[j].spec->jsonWords->sBuffer[k][0]]++;
+                }
+            }
+            temp = temp->next;
+        }
+    }
 
 
     /*if(bf->search("tsikitas")) cout << "TRUE" << endl;
@@ -392,3 +404,5 @@ int main(int argc, char **argv){
     delete hash;
     return 0;
 }
+
+
