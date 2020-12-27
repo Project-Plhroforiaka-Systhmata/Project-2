@@ -283,11 +283,10 @@ int main(int argc, char **argv){
             char* pch;
             char specs_string[specs.length()+1];
             strcpy(specs_string,specs.c_str());
-            pch = strtok (specs_string," ,.-");
+            pch = strtok (specs_string," ");
             //cout<<searchPath<<endl;
             while (pch != NULL)
             {
-
                 flag=0;
                 flag1 = 0;
                 string str;
@@ -313,7 +312,7 @@ int main(int argc, char **argv){
                 }
 
                 if(flag1 || str == "\n") {
-                    pch = strtok(NULL, " ,.-");
+                    pch = strtok(NULL, " ");
                     continue;
                 }
 
@@ -326,7 +325,7 @@ int main(int argc, char **argv){
                 }
                 else
                 {
-                    for(int i=0;i<voc.size;i+=2)
+                    for(int i=0;i<voc.size;i++)
                     {
                         if(voc.buffer[i]==str)
                         {
@@ -334,16 +333,7 @@ int main(int argc, char **argv){
                             vocIndex=i;
                             break;
                         }
-                    }
-                    for(int i=1;i<voc.size;i+=2)
-                    {
-                        if(voc.buffer[i]==str)
-                        {
-                            flag=1;
-                            vocIndex=i;
-                            break;
-                        }
-                    }
+                    }             
                     if(flag==0)
                     {
                         index=voc.pushBack(str);
@@ -351,12 +341,19 @@ int main(int argc, char **argv){
                     }
                     else
                     {
+                        int flagjson=0;
                         for(int j=0;j<tmpvertex->jsonWords->size;j++)
                         {
                             if(tmpvertex->jsonWords->sBuffer[j][0]==vocIndex)
                             {
+                                flagjson=1;
                                 tmpvertex->jsonWords->sBuffer[j][1]++;
                             }
+                            
+                        }
+                        if(flagjson==0)
+                        {
+                            tmpvertex->jsonWords->pushBack(1,vocIndex);
                         }
                     }
                     
@@ -366,23 +363,22 @@ int main(int argc, char **argv){
                 
                 bf->insert(pch);
                 
-                pch = strtok (NULL, " ,.-");
+                pch = strtok (NULL, " ");
             }
         }
         closedir(dirp3);
     }
     closedir(dirp2);
 
-
     
 
 
-    if(bf->search("tsikitas")) cout << "TRUE" << endl;
+    /*if(bf->search("tsikitas")) cout << "TRUE" << endl;
     else cout<<"FALSE"<<endl;
     if(bf->search("second")) cout << "TRUE" << endl;
     else cout<<"FALSE"<<endl;
     if(bf->search("resolution")) cout << "TRUE" << endl;
-    else cout<<"FALSE"<<endl;
+    else cout<<"FALSE"<<endl;*/
 
     
     
