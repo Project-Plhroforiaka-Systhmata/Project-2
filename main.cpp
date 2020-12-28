@@ -17,6 +17,7 @@ using namespace  std;
 int main(int argc, char **argv){
     string stopwords[194], specialChars[34];
     fstream fin;
+    //string str;
     fin.open("stopwords", ios::in);
     string line;
     int ind = 0;
@@ -80,14 +81,14 @@ int main(int argc, char **argv){
             char* pch;
             char specs_string[specs.length()+1];
             strcpy(specs_string,specs.c_str());
-            pch = strtok (specs_string," ,.-");
+            pch = strtok (specs_string," ");
             while (pch != NULL)
             {
                 string str;
                 str+=pch;
                 worlds++;
                 
-                pch = strtok (NULL, " ,.-");
+                pch = strtok (NULL, " ");
             }
 
             //keep json file id as key for the hash table
@@ -250,13 +251,11 @@ int main(int argc, char **argv){
 
             string key = entry3->d_name;
             key = regex_replace(key, regex(".json"), "");
-            //cout<<key<<endl;
             
             
         
             string searchPath;
             searchPath+=realPath;
-            //cout<<searchPath<<endl;
             tmpvertex=hash->search(searchPath,key);
 
             fp = fopen(path2, "r");
@@ -284,7 +283,6 @@ int main(int argc, char **argv){
             char specs_string[specs.length()+1];
             strcpy(specs_string,specs.c_str());
             pch = strtok (specs_string," ");
-            //cout<<searchPath<<endl;
             while (pch != NULL)
             {
                 flag=0;
@@ -292,6 +290,7 @@ int main(int argc, char **argv){
                 string str;
                 str+=pch;
                 string chars;
+                
 
                 transform(str.begin(), str.end(), str.begin(), ::tolower);
 
@@ -318,11 +317,13 @@ int main(int argc, char **argv){
                     continue;
                 }
 
+                
+                strcpy(pch, str.c_str());
                 if(!bf->find(pch))
                 {
-                    
                     index=voc.pushBack(str);
                     tmpvertex->jsonWords->pushBack(1,index);
+                    bf->insert(pch);
                     //uniqueWords.pushBack(str,index);
                 }
                 else
@@ -338,6 +339,7 @@ int main(int argc, char **argv){
                     }             
                     if(flag==0)
                     {
+                        bf->insert(pch);
                         index=voc.pushBack(str);
                         tmpvertex->jsonWords->pushBack(1,index);
                     }
@@ -349,7 +351,7 @@ int main(int argc, char **argv){
                             if(tmpvertex->jsonWords->sBuffer[j][0]==vocIndex)
                             {
                                 flagjson=1;
-                                tmpvertex->jsonWords->sBuffer[j][1]++;
+                                (tmpvertex->jsonWords->sBuffer[j][1])++;
                             }
                             
                         }
@@ -363,7 +365,36 @@ int main(int argc, char **argv){
                 
                 
                 
-                bf->insert(pch);
+                /*string str1;
+                str1+=pch;;
+                str1+=pch;
+
+                transform(str1.begin(), str1.end(), str1.begin(), ::tolower);
+
+                for(auto & specialChar : specialChars) {
+                    chars += specialChar;
+                }
+
+                str.erase(remove_if(str1.begin(), str1.end(), [&chars](const char& c) {
+                    return chars.find(c) != string::npos;
+                }), str.end());
+
+
+                for(auto & stopword : stopwords) {
+                    if(str == stopword){
+                        flag1 = 1;
+                        break;
+                    }
+                }
+
+                str = regex_replace(str1, regex("\n"), "");
+
+                if(flag1 || str1 == "\n") {
+                    pch = strtok(NULL, " ");
+                    continue;
+                }*/
+
+                //bf->insert(pch);
                 
                 pch = strtok (NULL, " ");
             }
@@ -373,17 +404,6 @@ int main(int argc, char **argv){
     closedir(dirp2);
 
 
-<<<<<<< HEAD
-    cout<<voc.size<<endl;
-    myVector<int> idfVoc(voc.size, false);
-    for(int i = 0; i < idfVoc.size; i++){
-        idfVoc.buffer[i] = 0;
-    }
-    for (int i = 0; i < hash->numBuckets; i++) {
-        bucket *temp = hash->table[i];
-        while(temp != NULL) {
-            for(int j = 0; j < temp->currentRecords - 1; j++) {
-=======
     myVector<int> idfVoc(voc.size, false);
     for(int i = 0; i < idfVoc.maxCapacity; i++){
         idfVoc.buffer[i] = 0;
@@ -393,22 +413,23 @@ int main(int argc, char **argv){
         bucket *temp = hash->table[i];
         while(temp != NULL) {
             for(int j = 0; j < temp->currentRecords; j++) {
->>>>>>> edfed25840c85b0ee5cf8f3f6178a231b1bf48b7
                 for (int k = 0; k < temp->records[j].spec->jsonWords->size; k++) {
-                    idfVoc.buffer[temp->records[j].spec->jsonWords->sBuffer[k][0]]++;
+                    (idfVoc.buffer[temp->records[j].spec->jsonWords->sBuffer[k][0]])++;
                 }
             }
             temp = temp->next;
         }
     }
-<<<<<<< HEAD
-=======
 
-    for(int i = 0; i < idfVoc.maxCapacity; i++){
-        cout << voc.buffer[i] << " " << idfVoc.buffer[i] << endl;
+    /*for(int i = 0; i < idfVoc.maxCapacity; i++){
+        cout << voc.buffer[i] << ":" << idfVoc.buffer[i] << endl;
     }
-    
->>>>>>> edfed25840c85b0ee5cf8f3f6178a231b1bf48b7
+    for(int i = 0; i < idfVoc.maxCapacity; i++){
+        if("environment"==voc.buffer[i])
+        {
+            cout<<i<<endl;
+        }
+    }*/
 
 
     /*if(bf->search("tsikitas")) cout << "TRUE" << endl;
