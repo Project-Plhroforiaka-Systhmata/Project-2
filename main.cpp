@@ -441,7 +441,7 @@ int main(int argc, char **argv){
     else cout<<"FALSE"<<endl;*/
 
     srand (time(NULL));
-    double b = 0, w1 = 0, w2 = 0, e = 2.71828, err = 10, h = 0.01;
+    double b = 0, w1 = 0, w2 = 0, e = 2.71828, err = 10, minErr = 10, h = 0.01, minw1, minw2;
     fin.open(argv[2], ios::in);
     int y;
     while (getline(fin, line)){
@@ -492,12 +492,12 @@ int main(int argc, char **argv){
             double p = -(b + w1 * x1 + w2 * x2);
             double pred = 1 / (1 + pow(e,p));
             cout << (1 + pow(e,p)) << " " << p << endl;
-            if((- y * log(pred) - (1 - y) * log(1 - pred)) > err){
-                cout << "BREAK" << endl;
-                cout << - y * log(pred) - (1 - y) * log(1 - pred) << endl;
-                break;
-            }
             err = - y * log(pred) - (1 - y) * log(1 - pred);
+            if(err < minErr){
+                minErr = err;
+                minw1 = w1;
+                minw2 = w2;
+            }
             cout << x1 << " " << x2 << " " << b << " " << w1 << " " << w2 << " " << pred << endl;
             cout << err << endl;
             //b = b - h * ((pred - y) * 1.0);
@@ -506,6 +506,7 @@ int main(int argc, char **argv){
         }
     }
     fin.close();
+    cout << minErr << " " << minw1 << " " << minw2 << endl;
 
     delete hash;
     return 0;
