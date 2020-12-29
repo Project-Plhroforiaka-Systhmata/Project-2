@@ -10,6 +10,7 @@
 #include <string>
 #include "hashTable.h"
 #include "BF.h"
+#include "cmath"
 
 
 using namespace  std;
@@ -310,7 +311,7 @@ int main(int argc, char **argv){
                     }
                 }
 
-                str = regex_replace(str, regex("\n"), "");
+                str = regex_replace(str, regex("\n"), "x");
 
                 if(flag1 || str == "\n") {
                     pch = strtok(NULL, " ");
@@ -439,6 +440,72 @@ int main(int argc, char **argv){
     if(bf->search("resolution")) cout << "TRUE" << endl;
     else cout<<"FALSE"<<endl;*/
 
+    srand (time(NULL));
+    double b = 0, w1 = 0, w2 = 0, e = 2.71828, err = 10, h = 0.01;
+    fin.open(argv[2], ios::in);
+    int y;
+    while (getline(fin, line)){
+        //int read = rand()%2;
+        //if(!read) continue;
+        stringstream s(line);
+        count = 0;
+        while (getline(s, word, ',')) {
+            count++;
+
+            //split line by ',' and recognise leftSpecId, rightpecId and label
+            switch (count) {
+                case 1:
+                    leftSpecId = word;
+                    break;
+                case 2:
+                    rightSpecId = word;
+                    break;
+                default:
+                    stringstream num(word);
+                    num >> y;
+            }
+        }
+
+        string key1 = leftSpecId, key2 = rightSpecId;
+        key1 = regex_replace(key1, regex("[^0-9]"), "");
+        key2 = regex_replace(key2, regex("[^0-9]"), "");
+
+
+        //fix specId formats to match format in hashTable
+        leftSpecId.append(".json");
+        rightSpecId.append(".json");
+        leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
+        rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
+
+        vertex *vert1, *vert2;
+        vert1 = hash->search(leftSpecId, key1);
+        vert2 = hash->search(rightSpecId, key2);
+
+        if (vert1 != nullptr && vert2 != nullptr) {
+            double x1 = 0.0, x2 = 0.0;
+            for(int i = 0; i < vert1->jsonWords->size; i++){
+                x1 += ((double)vert1->jsonWords->sBuffer[i][1]/vert1->jsonWords->size) * log(hash->size / idfVoc.buffer[vert1->jsonWords->sBuffer[i][0]]);
+            }
+            for(int i = 0; i < vert2->jsonWords->size; i++){
+                x2 += ((double)vert2->jsonWords->sBuffer[i][1]/vert2->jsonWords->size) * log(hash->size / idfVoc.buffer[vert2->jsonWords->sBuffer[i][0]]);
+            }
+            double p = -(b + w1 * x1 + w2 * x2);
+            double pred = 1 / (1 + pow(e,p));
+            cout << (1 + pow(e,p)) << " " << p << endl;
+            if((- y * log(pred) - (1 - y) * log(1 - pred)) > err){
+                cout << "BREAK" << endl;
+                cout << - y * log(pred) - (1 - y) * log(1 - pred) << endl;
+                break;
+            }
+            err = - y * log(pred) - (1 - y) * log(1 - pred);
+            cout << x1 << " " << x2 << " " << b << " " << w1 << " " << w2 << " " << pred << endl;
+            cout << err << endl;
+            //b = b - h * ((pred - y) * 1.0);
+            w1 = w1 - h * ((pred - y) * x1);
+            w2 = w2 - h * ((pred - y) * x2);
+        }
+    }
+    fin.close();
 
     delete hash;
     return 0;

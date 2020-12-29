@@ -2,7 +2,7 @@
 #include <iostream>
 #include "hashTable.h"
 
-hashTable::hashTable(int buckets) : numBuckets(buckets) {
+hashTable::hashTable(int buckets) : numBuckets(buckets), size(0) {
     table = new bucket*[numBuckets];
     //create the requested number of buckets
     for (int i = 0; i < numBuckets; i++) {
@@ -18,6 +18,7 @@ int hashTable::hashFunction(string key, int buckets) {
 }
 
 void hashTable::insert(string key, vertex *vertSpec) {
+    size++;
     int index = hashFunction(key, numBuckets);
     bucket *temp = table[index];
 
