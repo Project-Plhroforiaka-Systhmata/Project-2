@@ -22,7 +22,7 @@ void test_insertlist(void){
     mylist->insert(tmp);
     TEST_ASSERT(mylist->head != nullptr);
     TEST_ASSERT(mylist->head == mylist->tail);
-    TEST_ASSERT(mylist->head->spec->spec == "lalalalalalalalallalalalalalallalalalalalalallal"); 
+    TEST_ASSERT(mylist->head->spec->spec == "lalalalalalalalallalalalalalallalalalalalalallal");
     delete tmp;
     delete mylist;
     
@@ -157,36 +157,45 @@ void vector_test_insert(){
         vec->pushBack(i,true);
     }
     TEST_ASSERT(vec->size == 10000);
-
+    delete vec;
     myVector<int> *vec1 = new myVector<int>(150,true);
     for (int i = 0; i < 10001; i++){
         vec1->pushBack(i,true);
     }
     TEST_ASSERT(vec1->size == 10001);
+    delete vec1;
 }
 
 void test_createnlist(void){
     negativeList *mylist = new negativeList();
     TEST_ASSERT(mylist->head == nullptr);
     TEST_ASSERT(mylist->tail == nullptr);
+    delete mylist;
 }
 
 void test_insertnlist(void){
     negativeList *mylist = new negativeList();
-    mylist->insert(new list());
+    list *mlist = new list();
+    mylist->insert(mlist);
     TEST_ASSERT(mylist->head != nullptr);
     TEST_ASSERT(mylist->head == mylist->tail);
+    
+    delete mylist;
+    delete mlist;
     
 }
 
 void test_popnlist(void){
     negativeList *mylist = new negativeList();
-    mylist->insert(new list());
+    list *mlist = new list();
+    list *mlist1 = new list();
+    list *mlist2 = new list();
+    mylist->insert(mlist);
     mylist->pop();
     TEST_ASSERT(mylist->head == nullptr);
     TEST_ASSERT(mylist->tail == nullptr);
-    mylist->insert(new list());
-    mylist->insert(new list());
+    mylist->insert(mlist1);
+    mylist->insert(mlist2);
     mylist->pop();
     TEST_ASSERT(mylist->head == mylist->tail);
     mylist->pop();
@@ -198,13 +207,19 @@ void test_popnlist(void){
     mylist->pop();
     mylist->pop();
     mylist->pop();
+    delete mylist;
+    delete mlist;
+    delete mlist1;
+    delete mlist2;
 }
 
 
 void test_destroynlist(void){
     negativeList *tmp = new negativeList();
-    tmp->insert(new list());
+    list *mlist = new list();
+    tmp->insert(mlist);
     delete tmp;
+    delete mlist;
     TEST_ASSERT(sizeof(tmp) == 8);
 }
 
