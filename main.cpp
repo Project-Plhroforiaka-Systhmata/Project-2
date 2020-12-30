@@ -1,7 +1,6 @@
-#include <stdlib.h>
 #include <cstdlib>
 #include <iostream>
-#include <stdio.h>
+#include <cstdio>
 #include <dirent.h>
 #include <cstring>
 #include <fstream>
@@ -35,7 +34,7 @@ int main(int argc, char **argv){
     fin.close();
 
     int worlds=0,sigmod_lines=0;;
-    myVector<string> voc(400000, false);
+    myVector<string> voc(91000, false);
     auto *hash = new hashTable(10000);
     FILE *fp;
     DIR *dirp2,*dirp3;
@@ -351,7 +350,6 @@ int main(int argc, char **argv){
     }
     closedir(dirp2);
 
-
     //idf voc initialization
     myVector<int> idfVoc(voc.size, false);
     for(int i = 0; i < idfVoc.maxCapacity; i++){
@@ -435,7 +433,6 @@ int main(int argc, char **argv){
             w2 = w2 - h * ((pred - y) * x2);
         }
     }
-    //fin.close();
 
     
 
@@ -444,7 +441,6 @@ int main(int argc, char **argv){
     //TEST 
 
     templines=0;
-    //fin.open(argv[2], ios::in);
     int success=0;
     while (getline(fin, line)){
         templines++;
@@ -502,7 +498,6 @@ int main(int argc, char **argv){
     }
     fin.close();
     cout<<"success rate: "<<(double(success)/templines)*100<<"%"<<endl;
-
 
 
     delete hash;
