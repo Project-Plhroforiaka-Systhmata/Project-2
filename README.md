@@ -8,3 +8,7 @@
 
 
 ## Execute Command
+./project2 2013_camera_specs/ sigmod_large_labelled_dataset.csv
+
+## Execute Command test
+./tests

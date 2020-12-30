@@ -13,7 +13,7 @@
 #include "cmath"
 
 
-using namespace  std;
+using namespace std;
 
 int main(int argc, char **argv){
     string stopwords[194], specialChars[34];
@@ -35,7 +35,7 @@ int main(int argc, char **argv){
     fin.close();
 
     int worlds=0,sigmod_lines=0;;
-    myVector<string> voc(10000, false);
+    myVector<string> voc(400000, false);
     auto *hash = new hashTable(10000);
     FILE *fp;
     DIR *dirp2,*dirp3;
@@ -268,9 +268,11 @@ int main(int argc, char **argv){
                 string str;
                 str+=pch;
                 string chars;
-                
 
-                transform(str.begin(), str.end(), str.begin(), ::tolower);
+
+                for_each(str.begin(), str.end(), [](char & c){
+                    c = ::tolower(c);
+                });
 
                 for(auto & specialChar : specialChars) {
                     chars += specialChar;
@@ -290,7 +292,7 @@ int main(int argc, char **argv){
 
                 str = regex_replace(str, regex("\n"), "");
 
-                if(flag1 || str == "\n" || str=="") {
+                if(flag1 || str == "\n" || str.empty()) {
                     pch = strtok(NULL, " ");
                     continue;
                 }
@@ -498,109 +500,9 @@ int main(int argc, char **argv){
     fin.close();
     cout<<"success rate: "<<(double(success)/templines)*100<<"%"<<endl;
 
-    
-    //VAL
-   /* templines=0;
-    //fin.open(argv[2], ios::in);
-    while (getline(fin, line)){
-        if(templines==val_lines) break;
-        //if(templines<=test_lines+train_lines) continue;
-        //if(templines==test_lines+train_lines+val_lines) break;
-        val_lines++;
-        //if(!read) continue;
-        stringstream s(line);
-        count = 0;
-        while (getline(s, word, ',')) {
-            count++;
-
-            //split line by ',' and recognise leftSpecId, rightpecId and label
-            switch (count) {
-                case 1:
-                    leftSpecId = word;
-                    break;
-                case 2:
-                    rightSpecId = word;
-                    break;
-                default:
-                    stringstream num(word);
-                    num >> y;
-            }
-        }
-
-        vertex *vert1, *vert2;
-        vert1 = hash->search(leftSpecId);
-        vert2 = hash->search(rightSpecId);
-
-        if (vert1 != nullptr && vert2 != nullptr) {
-            double x1 = 0.0, x2 = 0.0;
-            for(int i = 0; i < vert1->jsonWords->size; i++){
-                x1 += ((double)vert1->jsonWords->sBuffer[i][1]/vert1->jsonWords->size) * log(hash->size / idfVoc.buffer[vert1->jsonWords->sBuffer[i][0]]);
-            }
-            for(int i = 0; i < vert2->jsonWords->size; i++){
-                x2 += ((double)vert2->jsonWords->sBuffer[i][1]/vert2->jsonWords->size) * log(hash->size / idfVoc.buffer[vert2->jsonWords->sBuffer[i][0]]);
-            }
-            double p = -(b + minw1 * x1 + minw2 * x2);
-            double pred = 1 / (1 + pow(e,p));
-
-             //cout << pred << "VAL"<<endl;
-        }
-    }
-    fin.close();
-
-    fin.open(argv[3], ios::in);
-    templines=0;
-    while (getline(fin, line)){
-        //cout<<"HOLA"<<endl;
-        //int read = rand()%2;
-        //if(!read) continue;
-        stringstream s(line);
-        count = 0;
-        while (getline(s, word, ',')) {
-            count++;
-
-            //split line by ',' and recognise leftSpecId, rightpecId and label
-            switch (count) {
-                case 1:
-                    leftSpecId = word;
-                    break;
-                case 2:
-                    rightSpecId = word;
-                    break;
-                default:
-                    stringstream num(word);
-                    num >> y;
-            }
-        }
-
-        vertex *vert1, *vert2;
-        vert1 = hash->search(leftSpecId);
-        vert2 = hash->search(rightSpecId);
-
-        if (vert1 != nullptr && vert2 != nullptr) {
-            double x1 = 0.0, x2 = 0.0;
-            for(int i = 0; i < vert1->jsonWords->size; i++){
-                x1 += ((double)vert1->jsonWords->sBuffer[i][1]/vert1->jsonWords->size) * log(hash->size / idfVoc.buffer[vert1->jsonWords->sBuffer[i][0]]);
-            }
-            for(int i = 0; i < vert2->jsonWords->size; i++){
-                x2 += ((double)vert2->jsonWords->sBuffer[i][1]/vert2->jsonWords->size) * log(hash->size / idfVoc.buffer[vert2->jsonWords->sBuffer[i][0]]);
-            }
-            double p = -(b + minw1 * x1 + minw2 * x2);
-            double pred = 1 / (1 + pow(e,p));
-
-            cout << pred << " VAL"<<endl;
-        }
-    }
-    fin.close();*/
-
-
-
-
-
 
 
     delete hash;
     delete bf;
     return 0;
 }
-
-

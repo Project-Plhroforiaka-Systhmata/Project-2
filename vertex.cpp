@@ -5,7 +5,7 @@ vertex::vertex(string name, string specs): printed(0), spec(name), itemSpecs(spe
     //create the list and insert self
     specList = new list;
     specList->insert(this);
-    jsonWords=new myVector<int>(500,true);
+    jsonWords=new myVector<int>(100,true);
 }
 
 int vertex::copyList(list *cpList) { //used in order to copy vertex specList to cpList
