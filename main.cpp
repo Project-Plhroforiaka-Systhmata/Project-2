@@ -295,9 +295,11 @@ int main(int argc, char **argv){
                     continue;
                 }
 
-                
+                //insert words in vocabulary
                 strcpy(pch, str.c_str());
-                if(!bf->find(pch))
+
+                
+                if(!bf->find(pch))  //check in bf
                 {
                     index=voc.pushBack(str);
                     tmpvertex->jsonWords->pushBack(1,index);
@@ -314,13 +316,13 @@ int main(int argc, char **argv){
                             break;
                         }
                     }             
-                    if(flag==0)
+                    if(flag==0) // word doesn't exists
                     {
                         bf->insert(pch);
                         index=voc.pushBack(str);
                         tmpvertex->jsonWords->pushBack(1,index);
                     }
-                    else
+                    else    //word exists in voc but you should insert it in json's "voc"
                     {
                         int flagjson=0;
                         for(int j=0;j<tmpvertex->jsonWords->size;j++)
@@ -348,6 +350,7 @@ int main(int argc, char **argv){
     closedir(dirp2);
 
 
+    //idf voc initialization
     myVector<int> idfVoc(voc.size, false);
     for(int i = 0; i < idfVoc.maxCapacity; i++){
         idfVoc.buffer[i] = 0;
@@ -373,12 +376,11 @@ int main(int argc, char **argv){
     fin.open(argv[2], ios::in);
     int y;
     int train_lines=0.6*sigmod_lines;
-    //int test_lines=0.4*sigmod_lines;
     int templines=0;
 
     //TRAIN
     while (getline(fin, line)){
-        if(templines==train_lines) break;
+        if(templines==train_lines) break;   //read 60% of csv file for train set
         templines++;
 
         stringstream s(line);
@@ -438,6 +440,7 @@ int main(int argc, char **argv){
 
     
     //TEST 
+
     templines=0;
     //fin.open(argv[2], ios::in);
     int success=0;
