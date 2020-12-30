@@ -413,7 +413,7 @@ int main(int argc, char **argv){
 
 
     srand (time(NULL));
-    double b = 0.5, w1 = 0, w2 = 0, e = 2.71828, err = 10, minErr = 10, h = 0.01, minw1, minw2;
+    double b = 0.5, w1 = 0, w2 = 0, e = 2.71828, err = 10, minErr = 10, h = 0.1, minw1, minw2;
     fin.open(argv[2], ios::in);
     int y;
     int train_lines=0.6*sigmod_lines;
@@ -425,7 +425,7 @@ int main(int argc, char **argv){
     //TRAIN
     while (getline(fin, line)){
         if(templines==train_lines) break;
-       /* if(sum_zero==one) 
+        /*if(sum_zero==one) 
         {
             cout<<sum_zero<<one<<endl;
             break;
@@ -471,8 +471,6 @@ int main(int argc, char **argv){
         if(y==0) zero++;
         else one++;*/
 
-<<<<<<< HEAD
-=======
         if(leftSpecId == "left_spec_id") continue;
         //string key1 = leftSpecId, key2 = rightSpecId;
         //key1 = regex_replace(key1, regex("[^0-9]"), "");
@@ -484,7 +482,6 @@ int main(int argc, char **argv){
         //rightSpecId.append(".json");
         //leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
         //rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
->>>>>>> 5440434da0fba5443919c7c78f3e645596339d37
 
         vertex *vert1, *vert2;
         vert1 = hash->search(leftSpecId);
@@ -516,6 +513,9 @@ int main(int argc, char **argv){
         }
     }
     //fin.close();
+
+
+    
 
 
 
@@ -559,20 +559,34 @@ int main(int argc, char **argv){
             for(int i = 0; i < vert2->jsonWords->size; i++){
                 x2 += ((double)vert2->jsonWords->sBuffer[i][1]/vert2->jsonWords->size) * log(hash->size / idfVoc.buffer[vert2->jsonWords->sBuffer[i][0]]);
             }
-            double p = -(b + minw1 * x1 + minw2 * x2);
+            //cout<<x1<<"\t"<<x2<<endl;
+            double p = -(b + w1 * x1 + w2 * x2);
             double pred = 1 / (1 + pow(e,p));
 
+            err = - y * log(pred) - (1 - y) * log(1 - pred);
+            if(err < minErr){
+                minErr = err;
+                minw1 = w1;
+                minw2 = w2;
+            }
             if(y == 0) cout << pred << endl;
+            //cout << x1 << " " << x2 << " " << b << " " << w1 << " " << w2 << " " << pred << endl;
+            //cout << err << endl;
+            //b = b - h * ((pred - y) * 1.0);
+            w1 = w1 - h * ((pred - y) * x1);
+            w2 = w2 - h * ((pred - y) * x2);
+
+            if(y == 1) cout << pred << endl;
         }
     }
     fin.close();
 
-    /*
+    
     //VAL
-    templines=0;
+   /* templines=0;
     //fin.open(argv[2], ios::in);
     while (getline(fin, line)){
-        if(templines==train_lines) continue;
+        if(templines==val_lines) break;
         //if(templines<=test_lines+train_lines) continue;
         //if(templines==test_lines+train_lines+val_lines) break;
         val_lines++;
@@ -611,12 +625,12 @@ int main(int argc, char **argv){
             double p = -(b + minw1 * x1 + minw2 * x2);
             double pred = 1 / (1 + pow(e,p));
 
-            //if(y == 1) cout << pred << endl;
+             //cout << pred << "VAL"<<endl;
         }
     }
-    fin.close();*/
+    fin.close();
 
-    /*fin.open(argv[3], ios::in);
+    fin.open(argv[3], ios::in);
     templines=0;
     while (getline(fin, line)){
         //cout<<"HOLA"<<endl;
@@ -656,7 +670,7 @@ int main(int argc, char **argv){
             double p = -(b + minw1 * x1 + minw2 * x2);
             double pred = 1 / (1 + pow(e,p));
 
-            cout << pred << endl;
+            cout << pred << " VAL"<<endl;
         }
     }
     fin.close();*/
