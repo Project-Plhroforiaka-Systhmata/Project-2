@@ -421,15 +421,10 @@ int main(int argc, char **argv){
         }
     }
 
-    /*for(int i = 0; i < idfVoc.maxCapacity; i++){
+    for(int i = 0; i < idfVoc.maxCapacity; i++){
         cout << voc.buffer[i] << ":" << idfVoc.buffer[i] << endl;
     }
-    for(int i = 0; i < idfVoc.maxCapacity; i++){
-        if("environment"==voc.buffer[i])
-        {
-            cout<<i<<endl;
-        }
-    }*/
+    
 
 
     /*if(bf->search("tsikitas")) cout << "TRUE" << endl;
