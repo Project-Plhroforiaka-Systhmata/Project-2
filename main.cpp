@@ -34,7 +34,7 @@ int main(int argc, char **argv){
     }
     fin.close();
 
-    int worlds=0;
+    int worlds=0,sigmod_lines=0;;
     myVector<string> voc(10000, false);
     auto *hash = new hashTable(10000);
     FILE *fp;
@@ -109,6 +109,7 @@ int main(int argc, char **argv){
     int count;
     fin.open(argv[2], ios::in);
     while (getline(fin, line)){
+        sigmod_lines++;
         stringstream s(line);
         count = 0;
         while (getline(s, word, ',')) {
@@ -202,6 +203,7 @@ int main(int argc, char **argv){
         }
     }
 
+    cout<<sigmod_lines<<endl;
     cout<<worlds<<endl;
     int numOfUpdates=5;
     BF* bf = new BF(worlds,numOfUpdates);
@@ -293,7 +295,7 @@ int main(int argc, char **argv){
                     }
                 }
 
-                str = regex_replace(str, regex("\n"), "x");
+                //str = regex_replace(str, regex("\n"), "x");
 
                 if(flag1 || str == "\n") {
                     pch = strtok(NULL, " ");
@@ -404,24 +406,43 @@ int main(int argc, char **argv){
         }
     }
 
-    for(int i = 0; i < idfVoc.maxCapacity; i++){
+    /*for(int i = 0; i < idfVoc.maxCapacity; i++){
         cout << voc.buffer[i] << ":" << idfVoc.buffer[i] << endl;
-    }
+    }*/
     
 
-
-    /*if(bf->search("tsikitas")) cout << "TRUE" << endl;
-    else cout<<"FALSE"<<endl;
-    if(bf->search("second")) cout << "TRUE" << endl;
-    else cout<<"FALSE"<<endl;
-    if(bf->search("resolution")) cout << "TRUE" << endl;
-    else cout<<"FALSE"<<endl;*/
 
     srand (time(NULL));
     double b = 0.5, w1 = 0, w2 = 0, e = 2.71828, err = 10, minErr = 10, h = 0.01, minw1, minw2;
     fin.open(argv[2], ios::in);
     int y;
+    int train_lines=0.6*sigmod_lines;
+    int test_lines=0.2*sigmod_lines;
+    int val_lines=0.2*sigmod_lines;
+    int templines=0;
+    int zero=0,one=0,sum_zero=-1;
+    int flag_line=0;
+    //TRAIN
     while (getline(fin, line)){
+        if(templines==train_lines) break;
+       /* if(sum_zero==one) 
+        {
+            cout<<sum_zero<<one<<endl;
+            break;
+        }
+        if(templines==train_lines && zero==one) break;
+        else if(templines==train_lines)
+        {
+            sum_zero=zero;
+            cout<<"HOLA"<<sum_zero<<endl;
+            templines=0;
+            fin.close();
+            fin.open(argv[2], ios::in);
+            continue;
+
+        }*/
+        
+        templines++;
         //int read = rand()%2;
         //if(!read) continue;
         stringstream s(line);
@@ -442,17 +463,14 @@ int main(int argc, char **argv){
                     num >> y;
             }
         }
+        /*if(y==0 && sum_zero!=-1) 
+        {
+            continue;
+            //cout<<"HOLA"<<endl;
+        }
+        if(y==0) zero++;
+        else one++;*/
 
-        //string key1 = leftSpecId, key2 = rightSpecId;
-        //key1 = regex_replace(key1, regex("[^0-9]"), "");
-        //key2 = regex_replace(key2, regex("[^0-9]"), "");
-
-
-        //fix specId formats to match format in hashTable
-        //leftSpecId.append(".json");
-        //rightSpecId.append(".json");
-        //leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
-        //rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
 
         vertex *vert1, *vert2;
         vert1 = hash->search(leftSpecId);
@@ -475,7 +493,7 @@ int main(int argc, char **argv){
                 minw1 = w1;
                 minw2 = w2;
             }
-            if(y == 0) cout << pred << endl;
+            //if(y == 1) cout << pred << endl;
             //cout << x1 << " " << x2 << " " << b << " " << w1 << " " << w2 << " " << pred << endl;
             //cout << err << endl;
             //b = b - h * ((pred - y) * 1.0);
@@ -483,7 +501,157 @@ int main(int argc, char **argv){
             w2 = w2 - h * ((pred - y) * x2);
         }
     }
+    //fin.close();
+
+
+
+    //TEST 
+    templines=0;
+    //fin.open(argv[2], ios::in);
+    while (getline(fin, line)){
+        templines++;
+        //if(templines==test_lines) break;
+        //if(templines<=train_lines) continue;
+        //if(templines==test_lines+train_lines) break;
+        //int read = rand()%2;
+        //if(!read) continue;
+        stringstream s(line);
+        count = 0;
+        while (getline(s, word, ',')) {
+            count++;
+
+            //split line by ',' and recognise leftSpecId, rightpecId and label
+            switch (count) {
+                case 1:
+                    leftSpecId = word;
+                    break;
+                case 2:
+                    rightSpecId = word;
+                    break;
+                default:
+                    stringstream num(word);
+                    num >> y;
+            }
+        }
+        vertex *vert1, *vert2;
+        vert1 = hash->search(leftSpecId);
+        vert2 = hash->search(rightSpecId);
+
+        if (vert1 != nullptr && vert2 != nullptr) {
+            double x1 = 0.0, x2 = 0.0;
+            for(int i = 0; i < vert1->jsonWords->size; i++){
+                x1 += ((double)vert1->jsonWords->sBuffer[i][1]/vert1->jsonWords->size) * log(hash->size / idfVoc.buffer[vert1->jsonWords->sBuffer[i][0]]);
+            }
+            for(int i = 0; i < vert2->jsonWords->size; i++){
+                x2 += ((double)vert2->jsonWords->sBuffer[i][1]/vert2->jsonWords->size) * log(hash->size / idfVoc.buffer[vert2->jsonWords->sBuffer[i][0]]);
+            }
+            double p = -(b + minw1 * x1 + minw2 * x2);
+            double pred = 1 / (1 + pow(e,p));
+
+            if(y == 0) cout << pred << endl;
+        }
+    }
     fin.close();
+
+    /*
+    //VAL
+    templines=0;
+    //fin.open(argv[2], ios::in);
+    while (getline(fin, line)){
+        if(templines==train_lines) continue;
+        //if(templines<=test_lines+train_lines) continue;
+        //if(templines==test_lines+train_lines+val_lines) break;
+        val_lines++;
+        //if(!read) continue;
+        stringstream s(line);
+        count = 0;
+        while (getline(s, word, ',')) {
+            count++;
+
+            //split line by ',' and recognise leftSpecId, rightpecId and label
+            switch (count) {
+                case 1:
+                    leftSpecId = word;
+                    break;
+                case 2:
+                    rightSpecId = word;
+                    break;
+                default:
+                    stringstream num(word);
+                    num >> y;
+            }
+        }
+
+        vertex *vert1, *vert2;
+        vert1 = hash->search(leftSpecId);
+        vert2 = hash->search(rightSpecId);
+
+        if (vert1 != nullptr && vert2 != nullptr) {
+            double x1 = 0.0, x2 = 0.0;
+            for(int i = 0; i < vert1->jsonWords->size; i++){
+                x1 += ((double)vert1->jsonWords->sBuffer[i][1]/vert1->jsonWords->size) * log(hash->size / idfVoc.buffer[vert1->jsonWords->sBuffer[i][0]]);
+            }
+            for(int i = 0; i < vert2->jsonWords->size; i++){
+                x2 += ((double)vert2->jsonWords->sBuffer[i][1]/vert2->jsonWords->size) * log(hash->size / idfVoc.buffer[vert2->jsonWords->sBuffer[i][0]]);
+            }
+            double p = -(b + minw1 * x1 + minw2 * x2);
+            double pred = 1 / (1 + pow(e,p));
+
+            //if(y == 1) cout << pred << endl;
+        }
+    }
+    fin.close();*/
+
+    /*fin.open(argv[3], ios::in);
+    templines=0;
+    while (getline(fin, line)){
+        //cout<<"HOLA"<<endl;
+        //int read = rand()%2;
+        //if(!read) continue;
+        stringstream s(line);
+        count = 0;
+        while (getline(s, word, ',')) {
+            count++;
+
+            //split line by ',' and recognise leftSpecId, rightpecId and label
+            switch (count) {
+                case 1:
+                    leftSpecId = word;
+                    break;
+                case 2:
+                    rightSpecId = word;
+                    break;
+                default:
+                    stringstream num(word);
+                    num >> y;
+            }
+        }
+
+        vertex *vert1, *vert2;
+        vert1 = hash->search(leftSpecId);
+        vert2 = hash->search(rightSpecId);
+
+        if (vert1 != nullptr && vert2 != nullptr) {
+            double x1 = 0.0, x2 = 0.0;
+            for(int i = 0; i < vert1->jsonWords->size; i++){
+                x1 += ((double)vert1->jsonWords->sBuffer[i][1]/vert1->jsonWords->size) * log(hash->size / idfVoc.buffer[vert1->jsonWords->sBuffer[i][0]]);
+            }
+            for(int i = 0; i < vert2->jsonWords->size; i++){
+                x2 += ((double)vert2->jsonWords->sBuffer[i][1]/vert2->jsonWords->size) * log(hash->size / idfVoc.buffer[vert2->jsonWords->sBuffer[i][0]]);
+            }
+            double p = -(b + minw1 * x1 + minw2 * x2);
+            double pred = 1 / (1 + pow(e,p));
+
+            cout << pred << endl;
+        }
+    }
+    fin.close();*/
+
+
+
+
+
+
     cout << minErr << " " << minw1 << " " << minw2 << endl;
 
     delete hash;
