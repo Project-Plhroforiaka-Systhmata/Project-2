@@ -471,6 +471,20 @@ int main(int argc, char **argv){
         if(y==0) zero++;
         else one++;*/
 
+<<<<<<< HEAD
+=======
+        if(leftSpecId == "left_spec_id") continue;
+        //string key1 = leftSpecId, key2 = rightSpecId;
+        //key1 = regex_replace(key1, regex("[^0-9]"), "");
+        //key2 = regex_replace(key2, regex("[^0-9]"), "");
+
+
+        //fix specId formats to match format in hashTable
+        //leftSpecId.append(".json");
+        //rightSpecId.append(".json");
+        //leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
+        //rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
+>>>>>>> 5440434da0fba5443919c7c78f3e645596339d37
 
         vertex *vert1, *vert2;
         vert1 = hash->search(leftSpecId);
@@ -655,6 +669,7 @@ int main(int argc, char **argv){
     cout << minErr << " " << minw1 << " " << minw2 << endl;
 
     delete hash;
+    delete bf;
     return 0;
 }
 
