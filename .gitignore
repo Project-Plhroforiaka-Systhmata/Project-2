@@ -1,3 +1,5 @@
 *.o
 project2
 tests
+.vscode
+cmake-build-debug
