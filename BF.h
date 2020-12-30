@@ -139,7 +139,7 @@ bool BF::checkBit(int bit) { //checks if the bit is set to 1
 }
 
 BF::~BF() {
-    delete array;
+    delete []array;
 }
 
 

@@ -448,6 +448,7 @@ int main(int argc, char **argv){
             }
         }
 
+        if(leftSpecId == "left_spec_id") continue;
         //string key1 = leftSpecId, key2 = rightSpecId;
         //key1 = regex_replace(key1, regex("[^0-9]"), "");
         //key2 = regex_replace(key2, regex("[^0-9]"), "");
