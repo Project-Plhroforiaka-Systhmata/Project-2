@@ -9,11 +9,11 @@ using namespace std;
 class hashTable {
 public:
     bucket **table;
-    int numBuckets;
+    int numBuckets, size;
     int hashFunction(string, int);
     hashTable(int);
     void insert(string, vertex*);
-    vertex* search(string, string);
+    vertex* search(string);
     ~hashTable();
 };
 

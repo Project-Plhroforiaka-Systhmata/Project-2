@@ -10,6 +10,7 @@
 #include <string>
 #include "hashTable.h"
 #include "BF.h"
+#include "cmath"
 
 
 using namespace  std;
@@ -34,8 +35,8 @@ int main(int argc, char **argv){
     fin.close();
 
     int worlds=0;
-    myVector<string> voc(100000, false);
-    auto *hash = new hashTable(1000);
+    myVector<string> voc(10000, false);
+    auto *hash = new hashTable(10000);
     FILE *fp;
     DIR *dirp2,*dirp3;
     struct dirent * entry2;
@@ -91,20 +92,22 @@ int main(int argc, char **argv){
                 pch = strtok (NULL, " ");
             }
 
-            //keep json file id as key for the hash table
-            string key = entry3->d_name;
-            key = regex_replace(key, regex(".json"), "");
 
-            hash->insert(key, new vertex(key, realPath,specs));
+            string name;
+            name += realPath;
+            name = regex_replace(name, regex("/"), "//");
+            name = regex_replace(name, regex(".json"), "");
+            hash->insert(name, new vertex(name, specs));
         }
         closedir(dirp3);
 
     }
     closedir(dirp2);
 
-    fin.open(argv[2], ios::in);
+
     string word, leftSpecId, rightSpecId, label;
     int count;
+    fin.open(argv[2], ios::in);
     while (getline(fin, line)){
         stringstream s(line);
         count = 0;
@@ -124,31 +127,19 @@ int main(int argc, char **argv){
             }
         }
 
-
         if (label == "1") {
-            string key1 = leftSpecId, key2 = rightSpecId;
-            key1 = regex_replace(key1, regex("[^0-9]"), "");
-            key2 = regex_replace(key2, regex("[^0-9]"), "");
-
-
-            //fix specId formats to match format in hashTable
-            leftSpecId.append(".json");
-            rightSpecId.append(".json");
-            leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
-            rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
-
             vertex *vert1, *vert2;
-            vert1 = hash->search(leftSpecId, key1);
-            vert2 = hash->search(rightSpecId, key2);
+            vert1 = hash->search(leftSpecId);
+            vert2 = hash->search(rightSpecId);
             //if leftSpecId and rightSpecId exist and are not already in the same list
             if (vert1 != nullptr && vert2 != nullptr && vert1->specList != vert2->specList) {
                 //copy leftSpecId's list to rightSpecId's list
                 vert1->copyList(vert2->specList);
             }
-
         }
     }
     fin.close();
+
 
     fin.open(argv[2], ios::in);
     while (getline(fin, line)){
@@ -171,20 +162,10 @@ int main(int argc, char **argv){
         }
 
         if(label == "0") {
-            string key1 = leftSpecId, key2 = rightSpecId;
-            key1 = regex_replace(key1, regex("[^0-9]"), "");
-            key2 = regex_replace(key2, regex("[^0-9]"), "");
-
-
-            //fix specId formats to match format in hashTable
-            leftSpecId.append(".json");
-            rightSpecId.append(".json");
-            leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
-            rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
 
             vertex *vert1, *vert2;
-            vert1 = hash->search(leftSpecId, key1);
-            vert2 = hash->search(rightSpecId, key2);
+            vert1 = hash->search(leftSpecId);
+            vert2 = hash->search(rightSpecId);
 
             if (vert1 != nullptr && vert2 != nullptr) {
                 list *list1, *list2;
@@ -199,7 +180,7 @@ int main(int argc, char **argv){
     fin.close();
 
     //print every vertex's list in the hashable
-    cout << "All positive connections\n" << endl;
+    cout << "All positive matches\n" << endl;
     for (int i = 0; i < hash->numBuckets; i++) {
         bucket *temp = hash->table[i];
         while(temp != NULL) {
@@ -210,7 +191,7 @@ int main(int argc, char **argv){
         }
     }
 
-    cout << "\n\nAll negative connections\n" << endl;
+    cout << "\n\nAll negative matches\n" << endl;
     for (int i = 0; i < hash->numBuckets; i++) {
         bucket *temp = hash->table[i];
         while(temp != NULL) {
@@ -249,14 +230,16 @@ int main(int argc, char **argv){
             strcat(realPath,entry3->d_name);
 
 
-            string key = entry3->d_name;
-            key = regex_replace(key, regex(".json"), "");
+            //string key = entry3->d_name;
+            //key = regex_replace(key, regex(".json"), "");
             
             
         
             string searchPath;
             searchPath+=realPath;
-            tmpvertex=hash->search(searchPath,key);
+            searchPath = regex_replace(searchPath, regex("/"), "//");
+            searchPath = regex_replace(searchPath, regex(".json"), "");
+            tmpvertex=hash->search(searchPath);
 
             fp = fopen(path2, "r");
             while (fgets(fline, sizeof(fline), fp))
@@ -310,7 +293,7 @@ int main(int argc, char **argv){
                     }
                 }
 
-                str = regex_replace(str, regex("\n"), "");
+                str = regex_replace(str, regex("\n"), "x");
 
                 if(flag1 || str == "\n") {
                     pch = strtok(NULL, " ");
@@ -434,6 +417,74 @@ int main(int argc, char **argv){
     if(bf->search("resolution")) cout << "TRUE" << endl;
     else cout<<"FALSE"<<endl;*/
 
+    srand (time(NULL));
+    double b = 0.5, w1 = 0, w2 = 0, e = 2.71828, err = 10, minErr = 10, h = 0.01, minw1, minw2;
+    fin.open(argv[2], ios::in);
+    int y;
+    while (getline(fin, line)){
+        //int read = rand()%2;
+        //if(!read) continue;
+        stringstream s(line);
+        count = 0;
+        while (getline(s, word, ',')) {
+            count++;
+
+            //split line by ',' and recognise leftSpecId, rightpecId and label
+            switch (count) {
+                case 1:
+                    leftSpecId = word;
+                    break;
+                case 2:
+                    rightSpecId = word;
+                    break;
+                default:
+                    stringstream num(word);
+                    num >> y;
+            }
+        }
+
+        //string key1 = leftSpecId, key2 = rightSpecId;
+        //key1 = regex_replace(key1, regex("[^0-9]"), "");
+        //key2 = regex_replace(key2, regex("[^0-9]"), "");
+
+
+        //fix specId formats to match format in hashTable
+        //leftSpecId.append(".json");
+        //rightSpecId.append(".json");
+        //leftSpecId = regex_replace(leftSpecId, regex("//"), "/");
+        //rightSpecId = regex_replace(rightSpecId, regex("//"), "/");
+
+        vertex *vert1, *vert2;
+        vert1 = hash->search(leftSpecId);
+        vert2 = hash->search(rightSpecId);
+
+        if (vert1 != nullptr && vert2 != nullptr) {
+            double x1 = 0.0, x2 = 0.0;
+            for(int i = 0; i < vert1->jsonWords->size; i++){
+                x1 += ((double)vert1->jsonWords->sBuffer[i][1]/vert1->jsonWords->size) * log(hash->size / idfVoc.buffer[vert1->jsonWords->sBuffer[i][0]]);
+            }
+            for(int i = 0; i < vert2->jsonWords->size; i++){
+                x2 += ((double)vert2->jsonWords->sBuffer[i][1]/vert2->jsonWords->size) * log(hash->size / idfVoc.buffer[vert2->jsonWords->sBuffer[i][0]]);
+            }
+            double p = -(b + w1 * x1 + w2 * x2);
+            double pred = 1 / (1 + pow(e,p));
+            //cout << (1 + pow(e,p)) << " " << p << endl;
+            err = - y * log(pred) - (1 - y) * log(1 - pred);
+            if(err < minErr){
+                minErr = err;
+                minw1 = w1;
+                minw2 = w2;
+            }
+            if(y == 0) cout << pred << endl;
+            //cout << x1 << " " << x2 << " " << b << " " << w1 << " " << w2 << " " << pred << endl;
+            //cout << err << endl;
+            //b = b - h * ((pred - y) * 1.0);
+            w1 = w1 - h * ((pred - y) * x1);
+            w2 = w2 - h * ((pred - y) * x2);
+        }
+    }
+    fin.close();
+    cout << minErr << " " << minw1 << " " << minw2 << endl;
 
     delete hash;
     return 0;

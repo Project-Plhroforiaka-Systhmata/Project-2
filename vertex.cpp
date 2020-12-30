@@ -1,7 +1,7 @@
 #include <iostream>
 #include "vertex.h"
 
-vertex::vertex(string sid, string name, string specs): printed(0), id(sid), spec(name), itemSpecs(specs) {
+vertex::vertex(string name, string specs): printed(0), spec(name), itemSpecs(specs) {
     //create the list and insert self
     specList = new list;
     specList->insert(this);

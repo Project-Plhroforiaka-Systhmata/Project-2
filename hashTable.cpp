@@ -1,8 +1,9 @@
 #include <sstream>
 #include <iostream>
+#include <regex>
 #include "hashTable.h"
 
-hashTable::hashTable(int buckets) : numBuckets(buckets) {
+hashTable::hashTable(int buckets) : numBuckets(buckets), size(0) {
     table = new bucket*[numBuckets];
     //create the requested number of buckets
     for (int i = 0; i < numBuckets; i++) {
@@ -11,13 +12,21 @@ hashTable::hashTable(int buckets) : numBuckets(buckets) {
 }
 
 int hashTable::hashFunction(string key, int buckets) {
-    stringstream num(key);
+    string key2;
     int hashKey;
+    size_t i;
+    for (i = 0; i < key.length(); i++){
+        if (isdigit(key[i])){
+            key2 += key[i];
+        }
+    }
+    stringstream num(key2);
     num >> hashKey;
     return hashKey % buckets;
 }
 
 void hashTable::insert(string key, vertex *vertSpec) {
+    size++;
     int index = hashFunction(key, numBuckets);
     bucket *temp = table[index];
 
@@ -33,8 +42,8 @@ void hashTable::insert(string key, vertex *vertSpec) {
     }
 }
 
-vertex* hashTable::search(string searchStr, string key) {
-    int index = hashFunction(key, numBuckets);
+vertex* hashTable::search(string searchStr) {
+    int index = hashFunction(searchStr, numBuckets);
     bucket *temp = table[index];
     while(temp != NULL) {
         for(int j = 0; j < temp->currentRecords; j++){

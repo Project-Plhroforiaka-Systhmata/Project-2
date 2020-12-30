@@ -9,10 +9,10 @@ using namespace std;
 class vertex {
 public:
     int printed;
-    string spec, id, itemSpecs;
+    string spec, itemSpecs;
     myVector<int> *jsonWords;
     list *specList;
-    vertex(string, string, string);
+    vertex(string, string);
     int copyList(list*);
     void printList();
     ~vertex();
