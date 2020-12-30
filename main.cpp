@@ -492,6 +492,7 @@ int main(int argc, char **argv){
     cout << minErr << " " << minw1 << " " << minw2 << endl;
 
     delete hash;
+    delete bf;
     return 0;
 }
 

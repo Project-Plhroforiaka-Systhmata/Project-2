@@ -38,7 +38,6 @@ void hashTable::insert(string key, vertex *vertSpec) {
     temp->currentRecords++;         //increase current records counter
     if (temp->currentRecords == temp->maxRecords) {
         temp->next = new bucket;
-
     }
 }
 

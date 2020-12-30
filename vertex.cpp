@@ -53,4 +53,5 @@ vertex::~vertex() {
         }
         delete specList;    //delete the list
     }
+    delete jsonWords;
 }
